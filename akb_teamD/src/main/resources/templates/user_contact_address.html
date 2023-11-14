@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>連絡先登録</title>
+
+        <!--css導入リンク-->
+        <link href="../static/css/design.css" rel="stylesheet" type="text/css">
+        <link href="../static/css/global.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+        <trans class="translate">
+            <li><a href="user_diligence.html" >勤怠入力</a></li>
+            <li><a href="user_place.html" >勤務場所登録</a></li>
+            <li><a href="user_contact_address.html" >連絡先登録</a></li>
+            <li><a href="user_disp_history.html" >勤怠履歴一覧</a></li>
+            <li><a href="user_attendanceList.html" >勤怠状況一覧</a></li>
+            <li><a href="global_login.html" >ログアウト</a></li>
+         </trans>
+ 
+        </br></br></br></br>    
+        <h1><p>連絡先登録</p></h1>        
+        <p class="position_center">
+        電話番号<input type="text" name="phone" pattern="\d{1,5}-\d{1,4}-\d{4,5}" placeholder="000-0000-0000"></br>
+        メールアドレス<input type="text" name="mail" placeholder="aaa@~.com"></br>  
+        備考<input type="text" name="remark" placeholder="備考を入力してください"></br>  
+        <input href="#" type="submit" value="登録" id="button">
+
+        </p>
+
+    </body>
+
+</html>

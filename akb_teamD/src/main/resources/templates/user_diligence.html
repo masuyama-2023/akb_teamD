@@ -1,0 +1,104 @@
+<!--出勤・退勤ボタン-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>勤怠管理</title>
+
+        <!--css導入リンク-->
+        <link href="css/design.css" rel="stylesheet" type="text/css">
+        <link href="css/global.css" rel="stylesheet" type="text/css">
+
+        <script>
+            window.addEventListener('DOMContentLoaded', function(){
+                 // 1秒ごとに実行
+                setInterval(() => {
+                    const date = new Date(); //現在時刻を取得
+                    var y = date.getFullYear(), //西暦年
+                        m = date.getMonth() + 1, //月　
+                        d = date.getDate(), //日
+                        H = date.getHours(), //時
+                        M = date.getMinutes(), //分
+                        S = date.getSeconds(); //秒
+                    
+                        if(H < 10){
+                            H = "0" + H;
+                        }
+                        if(M < 10){
+                            M = "0" + M;
+                        }
+                        if(S < 10){
+                            S = "0" + S;
+                        }
+
+
+                        str = y + "/" + m + "/" + d + " " + H + ":" + M + ":" + S;
+                    
+                        document.getElementById('times').innerHTML = str ;
+                }, 1000);
+
+            });
+
+            function alerts(op){
+
+                if(op==1){
+                    window.confirm("出勤しますか？");
+                }
+                else if(op==2){
+                    window.confirm("退勤しますか？");
+                }
+
+                else if(op==3){
+                    window.confirm("休憩開始しますか？");
+                }
+
+                else if(op==4){
+                    window.confirm("休憩終了しますか？");
+                }
+
+            }
+
+        </script>
+    </head>
+
+    <body>
+
+        <trans class="translate">
+           <li><a href="user_diligence.html" >勤怠入力</a></li>
+           <li><a href="user_place.html" >勤務場所登録</a></li>
+           <li><a href="user_contact_address.html" >連絡先登録</a></li>
+           <li><a href="user_disp_history.html" >勤怠履歴一覧</a></li>
+           <li><a href="user_attendanceList.html" >勤怠状況一覧</a></li>
+           <li><a href="global_login.html" >ログアウト</a></li>
+        </trans>
+    
+    
+
+        <!--時刻表示-->
+        <div id="times" class="time"></div>
+    </br></br></br></br>    
+        <p>こんにちは{ }さん</p>
+        <p>状態：未出勤</p>
+
+        <form th:action="@{/workIn}" method="get">
+            <p><input type="submit" class="btn-square-shadow" value="出勤"  id="IN" onclick="alerts(1)"></input></p>
+        </form>
+
+        <form th:action="@{/workOut}" method="get">
+            <p><input type="submit" class="btn-square-shadow" value="退勤"  id="OUT" onclick="alerts(2)"></input></p>
+        </form>
+
+        <form th:action="@{/breakIn}" method="get">
+            <p><input type="submit" class="btn-square-shadow" value="休憩開始"  id="AFK_ST" onclick="alerts(3)"></input>
+        </form>
+
+        <form th:action="@{/breakOut}" method="get">
+            <input type="submit" class="btn-square-shadow" value="休憩終了"  id="AFK_END" onclick="alerts(4)"></input></p>
+        </form>
+
+
+
+    </body>
+
+</html> 

@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8">
         <title></title>
         
         <!--css導入リンク-->
-        <link href="../static/css/design.css" rel="stylesheet" type="text/css">
-        <link href="../static/css/global.css" rel="stylesheet" type="text/css">
+        <link href="css/design.css" rel="stylesheet" type="text/css">
+        <link href="css/global.css" rel="stylesheet" type="text/css">
 
     </head>
 
     <body>
         <trans class="translate">
-            <li><a href="adm_userList.html" >ユーザー管理</a></li>
+            <li><a href="adm_userList" >ユーザー管理</a></li>
             <li><a href="#" >勤務場所管理</a></li>
-            <li><a href="adm_display_times.html" >勤怠時間集計</a></li>
+            <li><a href="adm_display_times" >勤怠時間集計</a></li>
             <li><a href="#" >ログアウト</a></li>
          </trans>
  
         </br></br></br>
         <h1 class="center">ユーザー 一覧</h1></br>
 
-        <form action="adm_user_add.html" th:action="@{/adm_user_add}" method="post">
+        <form th:action="@{/adm_user_add}" method="post">
             <center_right><input type="submit" class="btn-square-shadow" value="新規登録"  id="New"></input></center_right>
         </form>
 

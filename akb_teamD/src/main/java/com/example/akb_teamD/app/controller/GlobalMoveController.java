@@ -45,14 +45,20 @@ public class GlobalMoveController
     }
 
     //TODO ログインしているユーザーの情報から勤怠履歴を取得
-    @GetMapping("user_disp_history")
+    @GetMapping("/user_disp_history")
     public String history() {
         return "user_disp_history";
     }
 
-    @GetMapping("place")
+    @GetMapping("/user_place")
     public String place() {
         return "user_place";
+    }
+
+
+    @GetMapping("/user_contact_address")
+    public String address() {
+        return "user_contact_address";
     }
 
 }

@@ -65,12 +65,12 @@
     <body>
 
         <trans class="translate">
-           <li><a href="user_diligence.html" >勤怠入力</a></li>
-           <li><a href="user_place.html" >勤務場所登録</a></li>
-           <li><a href="user_contact_address.html" >連絡先登録</a></li>
-           <li><a href="user_disp_history.html" >勤怠履歴一覧</a></li>
-           <li><a href="user_attendanceList.html" >勤怠状況一覧</a></li>
-           <li><a href="global_login.html" >ログアウト</a></li>
+            <li><a href="user_diligence" >勤怠入力</a></li>
+            <li><a href="user_place" >勤務場所登録</a></li>
+            <li><a href="user_contact_address" >連絡先登録</a></li>
+            <li><a href="user_disp_history" >勤怠履歴一覧</a></li>
+            <li><a href="user_attendanceList" >勤怠状況一覧</a></li>
+            <li><a href="global_login" >ログアウト</a></li>
         </trans>
     
     
@@ -90,11 +90,11 @@
         </form>
 
         <form th:action="@{/breakIn}" method="get">
-            <p><input type="submit" class="btn-square-shadow" value="休憩開始"  id="AFK_ST" onclick="alerts(3)"></input>
+            <p><input type="submit" class="btn-square-shadow" value="休憩開始"  id="AFK_ST" onclick="alerts(3)"></input></p>
         </form>
 
         <form th:action="@{/breakOut}" method="get">
-            <input type="submit" class="btn-square-shadow" value="休憩終了"  id="AFK_END" onclick="alerts(4)"></input></p>
+            <p><input type="submit" class="btn-square-shadow" value="休憩終了"  id="AFK_END" onclick="alerts(4)"></input></p>
         </form>
 
 

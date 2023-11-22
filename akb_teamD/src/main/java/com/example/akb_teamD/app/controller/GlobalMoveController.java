@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,7 @@ import java.util.Map;
   = = = = = = = = = = = = = = = = = = = = = =*/
 
 
+@RequestMapping("")
 @Controller
 public class GlobalMoveController
 {
@@ -58,6 +62,10 @@ public class GlobalMoveController
 
     @GetMapping("/user_contact_address")
     public String address() {
+        //ここの　String sql = 以下の文をちゃんと書ければ動くはず？現状は仮置き。
+        //idとnameは現在ログインしてるユーザー情報を取得。残りの３つは入力欄に入力した内容を入れる。
+        //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES (？？？,'？？？','？？？','？？？','？？？')";
+        //jdbcTemplate.update(sql);
         return "user_contact_address";
     }
 

@@ -1,5 +1,5 @@
 package com.example.akb_teamD.app.controller;
-
+import com.example.akb_teamD.app.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,6 +27,8 @@ public class InputsController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
+
     public String getTime() {
         Date today = new Date();
         //System.out.println(new SimpleDateFormat("hh:mm:ss").format(today));
@@ -44,12 +46,7 @@ public class InputsController {
     //データベースに情報の挿入&表示
     @PostMapping("/user_attendanceList")
     public String attendanceList(Model model) {
-        //情報表示
-        String sql = "SELECT * FROM attendances_table";
-        List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
-        model.addAttribute("attendList",list);
-        System.out.println(list);
-        return "attendanceList";
+        return "user_attendanceList";
     }
 
 
@@ -57,18 +54,18 @@ public class InputsController {
     //TODO 勤怠管理ボタンの中身実装(return値は仮入力されたもの)
     @GetMapping("/workIn")
     public String workIn(Model model) {
-        return "place";
+        return "user_place";
     }
     @GetMapping("/workOut")
-    public String workOut() {
+    public String workOut(Model model) {
         return "user_attendanceList";
     }
     @GetMapping("/breakIn")
-    public String breakIn() {
+    public String breakIn(Model model) {
         return "user_attendanceList";
     }
     @GetMapping("/breakOut")
-    public String breakOut() {
+    public String breakOut(Model model) {
         return "user_attendanceList";
     }
 

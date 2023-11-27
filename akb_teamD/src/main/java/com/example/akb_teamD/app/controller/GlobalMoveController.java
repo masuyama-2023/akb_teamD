@@ -36,28 +36,29 @@ public class GlobalMoveController
 
     @GetMapping("/user_attendanceList")
     public String view_attendance() {
+
         return "user_attendanceList";
     }
 
     @GetMapping("/user_diligence")
-    public String diligence(){
+    public String diligence(Model model){
         return "user_diligence";
     }
 
     //TODO ログインしているユーザーの情報から勤怠履歴を取得
     @GetMapping("/user_disp_history")
-    public String history() {
+    public String history(Model model) {
         return "user_disp_history";
     }
 
     @GetMapping("/user_place")
-    public String place() {
+    public String place(Model model) {
         return "user_place";
     }
 
 
     @GetMapping("/user_contact_address")
-    public String address() {
+    public String address(Model model) {
         return "user_contact_address";
     }
 

@@ -1,23 +1,13 @@
 package com.example.akb_teamD.app.controller;
+import com.example.akb_teamD.app.service.UserService;
 
+
+import com.example.akb_teamD.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.io.IOException;
-import java.sql.SQLException;
-
-
 
 import java.util.List;
 import java.util.Map;
@@ -30,34 +20,14 @@ import java.util.Map;
   = = = = = = = = = = = = = = = = = = = = = =*/
 
 
-@RequestMapping("")
 @Controller
 public class GlobalMoveController
 {
-    // データベースのURL
-    private static final String URL = "jdbc:postgresql://localhost:5432/springboot";
-
-    // データベースにアクセスするユーザー
-    private static final String USER = "postgres";
-
-    // データベースにアクセスするユーザーのパスワード
-    private static final String PASSWORD = "postgres";
-
-    /**
-     * データベースの接続を取得する
-     * @return
-     * @throws SQLException
-     */
-    public static Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
-        return DriverManager.getConnection(URL, USER, PASSWORD);
-    }
-
+    private UserService userService;
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-
-
+    public GlobalMoveController(UserService userService){
+        this.userService = userService;
+    }
 
     @GetMapping("/")
     public String login() {
@@ -65,74 +35,36 @@ public class GlobalMoveController
     }
 
     @GetMapping("/user_attendanceList")
-    public String view_attendance() {
+    public String view_attendance(Model model) {
+        model.addAttribute("attendList",getUserService().readAttendance());
         return "user_attendanceList";
     }
 
     @GetMapping("/user_diligence")
-    public String diligence(){
+    public String diligence(Model model){
         return "user_diligence";
     }
 
     //TODO ログインしているユーザーの情報から勤怠履歴を取得
     @GetMapping("/user_disp_history")
-    public String history() {
+    public String history(Model model) {
         return "user_disp_history";
     }
 
     @GetMapping("/user_place")
-    public String place() {
+    public String place(Model model) {
         return "user_place";
     }
 
 
     @GetMapping("/user_contact_address")
-    public String address() throws ClassNotFoundException, SQLException{
-        //ここの　String sql = 以下の文をちゃんと書ければ動くはず？現状は仮置き。
-        //idとnameは現在ログインしてるユーザー情報を取得。残りの３つは入力欄に入力した内容を入れる。
-        // ？？？は全部仮置き。当然だが仮置きなので動かない。
-        //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES (？？？,'？？？','？？？','？？？','？？？')";
-        //jdbcTemplate.update(sql);
-
-        int result = 0;
+    public String address(Model model) {
+        return "user_contact_address";
+    }
 
 
-        String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?, ?, ?, ?, ?);";
-//仮置きのコメント
-/*
-
-        String phone = request.getParameter("phone");
-        String mail = Integer.parseInt(request.getParameter("mail"));
-        String other = Integer.parseInt(request.getParameter("remark"));
-*/
-
-        try (Connection con = getConnection();PreparedStatement pstmt = con.prepareStatement(sql);) {
-            // パラメータの設定
-/*
-            pstmt.setInt(1, 1);
-            pstmt.setString(2,"test1");
-            pstmt.setString(3, phone);
-            pstmt.setString(4, mail);
-            pstmt.setString(5, other);
-*/
-
-
-            //全然うまくいかないのでベタ打ちテスト
-            //データベースにデータが入るのにページが開けない謎。
-            pstmt.setInt(1, 4);
-            pstmt.setString(2,"test3");
-            pstmt.setString(3, "000-0000-0001");
-            pstmt.setString(4, "aiueo@gmail.com");
-            pstmt.setString(5, "あいうえお");
-
-            // SQLの実行
-            result = pstmt.executeUpdate();
-
-        }
-
-
-        jdbcTemplate.update(sql);
-        return "/user_contact_address";
+    public UserService getUserService(){
+        return userService;
     }
 
 }

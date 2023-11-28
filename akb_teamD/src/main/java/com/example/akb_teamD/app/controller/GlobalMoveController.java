@@ -98,8 +98,7 @@ public class GlobalMoveController
 
 
         String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?, ?, ?, ?, ?);";
-        //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(2,'test1','a','b','c');";
-
+//仮置きのコメント
 /*
 
         String phone = request.getParameter("phone");
@@ -120,7 +119,7 @@ public class GlobalMoveController
 
             //全然うまくいかないのでベタ打ちテスト
             //データベースにデータが入るのにページが開けない謎。
-            pstmt.setInt(1, 3);
+            pstmt.setInt(1, 4);
             pstmt.setString(2,"test3");
             pstmt.setString(3, "000-0000-0001");
             pstmt.setString(4, "aiueo@gmail.com");
@@ -133,7 +132,7 @@ public class GlobalMoveController
 
 
         jdbcTemplate.update(sql);
-        return "user_contact_address";
+        return "/user_contact_address";
     }
 
 }

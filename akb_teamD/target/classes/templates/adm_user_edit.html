@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        
+        <!--css導入リンク-->
+        <link href="css/design.css" rel="stylesheet" type="text/css">
+        <link href="css/global.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+        <trans class="translate">
+            <li><a href="adm_userList" >ユーザー管理</a></li>
+            <li><a href="#" >勤務場所管理</a></li>
+            <li><a href="adm_display_times" >勤怠時間集計</a></li>
+            <li><a href="#" >ログアウト</a></li>
+         </trans>
+ 
+
+        </br></br>
+
+        <form action="adm_userList.html" method="post" >
+            <h1 class="center">ユーザー編集</h1>
+            <p>名前</p>
+            <p><input type="text" name="name" placeholder="選択したユーザー名"/></p>
+            <p>ログインID</p>
+            <p><input type="text" name="id"/></p>
+            <p>Password</p>
+            <p><input type="password" name="password"/></p>
+            <p><select class="place" name="place">
+                <option value="Home">自宅</option>
+                <option value="Tokyo">東京本社</option>
+                <option value="Office">営業所</option>
+    
+            </select>    
+        </p>
+            <p><input type="submit" value="ユーザー追加" id="button"></p>
+        </form>
+
+    </body>
+
+</html>

@@ -1,7 +1,9 @@
 package com.example.akb_teamD.app.controller;
+import com.example.akb_teamD.app.service.UserService;
 
+
+import com.example.akb_teamD.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +23,11 @@ import java.util.Map;
 @Controller
 public class GlobalMoveController
 {
-
-
+    private UserService userService;
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-
-
+    public GlobalMoveController(UserService userService){
+        this.userService = userService;
+    }
 
     @GetMapping("/")
     public String login() {
@@ -35,8 +35,8 @@ public class GlobalMoveController
     }
 
     @GetMapping("/user_attendanceList")
-    public String view_attendance() {
-
+    public String view_attendance(Model model) {
+        model.addAttribute("attendList",getUserService().readAttendance());
         return "user_attendanceList";
     }
 
@@ -60,6 +60,11 @@ public class GlobalMoveController
     @GetMapping("/user_contact_address")
     public String address(Model model) {
         return "user_contact_address";
+    }
+
+
+    public UserService getUserService(){
+        return userService;
     }
 
 }

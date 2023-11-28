@@ -1,8 +1,7 @@
 package com.example.akb_teamD.app.controller;
-import com.example.akb_teamD.app.repository.UserRepository;
 
+import com.example.akb_teamD.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +22,11 @@ import java.util.Map;
 @Controller
 public class InputsController {
 
+    private UserService userService;
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public InputsController(UserService userService){
+        this.userService = userService;
+    }
 
 
 
@@ -54,6 +55,11 @@ public class InputsController {
     //TODO 勤怠管理ボタンの中身実装(return値は仮入力されたもの)
     @GetMapping("/workIn")
     public String workIn(Model model) {
+
+        int id = 5;
+        String name = "test";
+
+        getUserService().insertWorkStart(id,name,getTime());
         return "user_place";
     }
     @GetMapping("/workOut")
@@ -69,6 +75,10 @@ public class InputsController {
         return "user_attendanceList";
     }
 
+    public UserService getUserService(){
+        return userService;
+    }
 
 }
+
 

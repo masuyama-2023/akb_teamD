@@ -4,6 +4,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,28 +22,23 @@ import java.util.Map;
 public class UserRepository  implements Create, Delete, View, Update{
     private JdbcTemplate jdbcTemplate;
 
+    private String sql = null;
+
     @Autowired
     public UserRepository(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 
-/*
-    @Override
-    public void attendance_view(Model model) {
-
-
-
-        String sql = "SELECT * FROM attendances_table";
-        List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
-        model.addAttribute("attendList",list);
-        System.out.println(list);
-
-    }
-*/
-
     //TODO 各メソッドにSQL処理の記述
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
+     *                                   INSERT文                              *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
     @Override
-    public void workStart() {
+    public void workStart(int id, String name, String time) {
+        getJdbcTemplate().update(
+         "INSERT INTO attendances_table (id,name,date,begin_time,status,place) VALUES(" + id + ",'"+ name +"','2023-11-27','" + time + "','出勤中','登録予定') ");
 
     }
 
@@ -55,10 +52,18 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     }
 
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
+     *                                   DELETE文                              *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
     @Override
     public void userDelete() {
 
     }
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
+     *                                   UPDATE文                              *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     @Override
     public void breakStart() {
@@ -85,28 +90,45 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     }
 
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
+     *                                   SELECT文                              *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
     @Override
-    public void findAttendance() {
+    public List<Map<String, Object>> findAttendance() {
+        sql = "SELECT * FROM attendances_table";
+        return jdbcTemplate.queryForList(sql);
+    }
+
+    @Override
+    public List<Map<String, Object>> findDisplayTimes() {
+        sql = "SELECT * FROM attendances_table";
+        return jdbcTemplate.queryForList(sql);
 
     }
 
     @Override
-    public void findDisplayTimes() {
+    public List<Map<String, Object>> findUserList() {
+        sql = "SELECT * FROM attendances_table";
+        return jdbcTemplate.queryForList(sql);
 
     }
 
     @Override
-    public void findUserList() {
+    public List<Map<String, Object>> findSelectTimes() {
+        sql = "SELECT * FROM attendances_table";
+        return jdbcTemplate.queryForList(sql);
 
     }
 
     @Override
-    public void findSelectTimes() {
+    public List<Map<String, Object>> findHistory() {
+        sql = "SELECT * FROM attendances_table";
+        return jdbcTemplate.queryForList(sql);
 
     }
 
-    @Override
-    public void findHistory() {
-
+    public JdbcTemplate getJdbcTemplate(){
+        return jdbcTemplate;
     }
 }

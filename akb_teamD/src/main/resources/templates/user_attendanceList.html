@@ -63,17 +63,23 @@
          <table id="table_center" border="1" width="1000" >
             <tr>
                 <th>No.</th>
+                <th>日付</th>
                 <th>氏名</th>
                 <th>勤務開始時間</th>
+                <th>休憩開始</th>
+                <th>休憩終了</th>
                 <th>勤務終了時間</th>
                 <th>ステータス</th>
                 <th>勤務場所</th>
             </tr>
 
             <tr th:each="attend : ${attendList}" th:object="${attend}">
-                <td th:text="*{no}"></td>
+                <td th:text="*{id}"></td>
+                <td th:text="*{date}"></td>
                 <td th:text="*{name}"></td>
                 <td th:text="*{begin_time}"></td>
+                <td th:text="*{break_begin}"></td>
+                <td th:text="*{break_end}"></td>
                 <td th:text="*{end_time}"></td>
                 <td th:text="*{status}"></td>
                 <td th:text="*{place}"></td>

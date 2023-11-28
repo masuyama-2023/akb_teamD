@@ -1,7 +1,9 @@
 package com.example.akb_teamD.app.controller;
+import com.example.akb_teamD.app.service.UserService;
 
+
+import com.example.akb_teamD.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +23,11 @@ import java.util.Map;
 @Controller
 public class GlobalMoveController
 {
-
-
+    private UserService userService;
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-
-
+    public GlobalMoveController(UserService userService){
+        this.userService = userService;
+    }
 
     @GetMapping("/")
     public String login() {
@@ -35,30 +35,36 @@ public class GlobalMoveController
     }
 
     @GetMapping("/user_attendanceList")
-    public String view_attendance() {
+    public String view_attendance(Model model) {
+        model.addAttribute("attendList",getUserService().readAttendance());
         return "user_attendanceList";
     }
 
     @GetMapping("/user_diligence")
-    public String diligence(){
+    public String diligence(Model model){
         return "user_diligence";
     }
 
     //TODO ログインしているユーザーの情報から勤怠履歴を取得
     @GetMapping("/user_disp_history")
-    public String history() {
+    public String history(Model model) {
         return "user_disp_history";
     }
 
     @GetMapping("/user_place")
-    public String place() {
+    public String place(Model model) {
         return "user_place";
     }
 
 
     @GetMapping("/user_contact_address")
-    public String address() {
+    public String address(Model model) {
         return "user_contact_address";
+    }
+
+
+    public UserService getUserService(){
+        return userService;
     }
 
 }

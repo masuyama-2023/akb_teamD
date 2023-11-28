@@ -42,20 +42,26 @@
 
             function alerts(op){
 
+                var checked;
+
                 if(op==1){
-                    window.confirm("出勤しますか？");
+                    checked = window.confirm("出勤しますか？");
                 }
+
                 else if(op==2){
-                    window.confirm("退勤しますか？");
+                    checked = window.confirm("退勤しますか？");
                 }
 
                 else if(op==3){
-                    window.confirm("休憩開始しますか？");
+                    checked = window.confirm("休憩開始しますか？");
                 }
 
                 else if(op==4){
-                    window.confirm("休憩終了しますか？");
+                   checked =  window.confirm("休憩終了しますか？");
                 }
+
+                return checked;
+
 
             }
 
@@ -82,19 +88,19 @@
         <p>状態：未出勤</p>
 
         <form th:action="@{/workIn}" method="get">
-            <p><input type="submit" class="btn-square-shadow" value="出勤"  id="IN" onclick="alerts(1)"></input></p>
+            <p><input type="submit" class="btn-square-shadow" value="出勤"  id="IN" onclick="return alerts(1)"></input></p>
         </form>
 
         <form th:action="@{/workOut}" method="get">
-            <p><input type="submit" class="btn-square-shadow" value="退勤"  id="OUT" onclick="alerts(2)"></input></p>
+            <p><input type="submit" class="btn-square-shadow" value="退勤"  id="OUT" onclick="return alerts(2)"></input></p>
         </form>
 
         <form th:action="@{/breakIn}" method="get">
-            <p><input type="submit" class="btn-square-shadow" value="休憩開始"  id="AFK_ST" onclick="alerts(3)"></input></p>
+            <p><input type="submit" class="btn-square-shadow" value="休憩開始"  id="AFK_ST" onclick="return alerts(3)"></input></p>
         </form>
 
         <form th:action="@{/breakOut}" method="get">
-            <p><input type="submit" class="btn-square-shadow" value="休憩終了"  id="AFK_END" onclick="alerts(4)"></input></p>
+            <p><input type="submit" class="btn-square-shadow" value="休憩終了"  id="AFK_END" onclick="return alerts(4)"></input></p>
         </form>
 
 

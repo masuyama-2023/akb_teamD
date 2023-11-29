@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        
+        <!--css導入リンク-->
+        <link href="css/design.css" rel="stylesheet" type="text/css">
+        <link href="css/global.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+        <trans class="translate">
+            <li><a href="adm_userList" >ユーザー管理</a></li>
+            <li><a href="#" >勤務場所管理</a></li>
+            <li><a href="adm_display_times" >勤怠時間集計</a></li>
+            <li><a href="#" >ログアウト</a></li>
+         </trans>
+ 
+        </br></br></br>
+        <h1 class="center">ユーザー 一覧</h1></br>
+
+        <form th:action="@{/adm_user_add}" method="post">
+            <center_right><input type="submit" class="btn-square-shadow" value="新規登録"  id="New"></input></center_right>
+        </form>
+
+
+        <table id="table_center" border="1" width="1000" >
+            <tr>
+                <th>名前</th>
+                <th>名前</th>
+                <th>名前</th>
+                <th>名前</th>
+                <th>名前</th>
+            </tr>
+            <tr class="record_center">
+                <td><a href="adm_user_edit.html">山田太郎</a></td>
+                <td><a href="adm_user_edit.html">名無し1</a></td>
+                <td><a href="adm_user_edit.html">名無し2</a></td>
+                <td><a href="adm_user_edit.html">名無し3</a></td>
+                <td><a href="adm_user_edit.html">名無し4</a></td>
+            </tr>
+            <tr class="record_center">
+                <td><a href="adm_user_edit.html">名無し5</a></td>
+                <td><a href="adm_user_edit.html">名無し6</a></td>
+                <td><a href="adm_user_edit.html">名無し7</a></td>
+                <td><a href="adm_user_edit.html">名無し8</a></td>
+                <td><a href="adm_user_edit.html">名無し9</a></td>
+            </tr>
+
+
+         </table>
+
+
+        
+    </body>
+
+</html>

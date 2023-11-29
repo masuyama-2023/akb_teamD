@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
+
         <meta charset="utf-8">
-        <title>bbbbbbnaoyabbbbbb</title>
+        <title>勤怠</title>
         
         <!--css導入リンク-->
         <link href="css/design.css" rel="stylesheet" type="text/css">
@@ -22,58 +23,33 @@
         </trans>
 
         </br></br>
-         <h1><p>勤怠履歴一覧 2023/10/15 ~ 2023/11/14</p></h1></br>
+         <h1><p th:text="|勤怠履歴一覧 ${fromJV_left_month}/15 ~ ${fromJV_right_month}/14|"></p></h1></br>
          <table id="table_center" border="1" width="1000" >
+
+             <p>
+             <form method="post" action="/user_disp_history">
+
+                 <input type="submit" class="btn-square-shadow" value="前月へ"  id="back" name="action"></input>
+
+                 <input type="submit" class="btn-square-shadow" value="次月へ"  id="next" name="action"></input>
+            </form>
+
+             </p>
+
             <tr>
                 <th>日付</th>
                 <th>開始</th>
                 <th>終了</th>
-               <th>休憩</th>
-                <th>総労働</th>
+                <th>休憩時間</th>
+                <th>労働時間</th>
             </tr>
-            <tr class="record_center">
-                <td>2023/10/06</td>
-                <td>9:00</td>
-                <td>18:00</td>
-                <td>1:00</td>
-                <td>8:00</td>
+            <tr th:each="attendance : ${fromJV_sel}">
+                <td th:text="${attendance['date']}"></td>
+                <td th:text="${attendance['begin_time']}"></td>
+                <td th:text="${attendance['end_time']}"></td>
+                <td th:text="${attendance['break_sum']}"></td>
+                <td th:text="${attendance['working']}"></td>
             </tr>
-            <tr class="record_center">
-                <td>2023/10/06</td>
-                <td>9:00</td>
-                <td>18:00</td>
-                <td>1:00</td>
-                <td>8:00</td>
-            </tr>
-            <tr class="record_center">
-                <td>2023/10/06</td>
-                <td>9:00</td>
-                <td>18:00</td>
-                <td>1:00</td>
-                <td>8:00</td>
-            </tr>
-            <tr class="record_center">
-                <td>2023/10/06</td>
-                <td>9:00</td>
-                <td>18:00</td>
-                <td>1:00</td>
-                <td>8:00</td>
-            </tr>
-            <tr class="record_center">
-                <td>2023/10/06</td>
-                <td>9:00</td>
-                <td>18:00</td>
-                <td>1:00</td>
-                <td>8:00</td>
-            </tr>
-            <tr class="record_center">
-                <td>2023/10/06</td>
-                <td>9:00</td>
-                <td>18:00</td>
-                <td>1:00</td>
-                <td>8:00</td>
-            </tr>
-
 
          </table>
 

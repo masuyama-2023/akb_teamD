@@ -5,10 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96dbce5c-906b-49c9-8c30-20594a778f08" name="変更" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/SessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/AdminMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/AdminMoveController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_display_times.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_display_times.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/global_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/global_login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_attendanceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_attendanceList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_contact_address.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_contact_address.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_disp_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_disp_history.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_place.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_place.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/AdminMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/AdminMoveController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/InputsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/InputsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/View.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/adm_display_times.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/adm_display_times.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/global_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/global_login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_attendanceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_attendanceList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_contact_address.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_contact_address.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_disp_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_disp_history.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_place.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_place.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/akb_teamD/AkbTeamDApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,11 +44,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -42,11 +74,33 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/tubak/My_file/授業作成物/共同開発_後期_勤怠システム/SpringBoot/AttandanceManage/AttandanceManage",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "git-widget-placeholder": "imai",
+    "last_opened_file_path": "C:/Users/naoya/Dev_akb_teamD/akb_teamD/akb_teamD",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="AkbTeamDApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.akb_teamD.app.AkbTeamDApplication" />
+      <module name="akb_teamD" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.akb_teamD.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="アプリケーション.AkbTeamDApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="アプリケーションレベル" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="デフォルトタスク">
@@ -57,5 +111,14 @@
       <updated>1700546886967</updated>
     </task>
     <servers />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/akb_teamD$AkbTeamDApplication.ic" NAME="AkbTeamDApplication のカバレッジ結果" MODIFIED="1701160174989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.akb_teamD.app.*</FILTER>
+    </SUITE>
   </component>
 </project>

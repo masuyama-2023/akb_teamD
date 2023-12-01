@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96dbce5c-906b-49c9-8c30-20594a778f08" name="変更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/SessionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/AdminMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/AdminMoveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_display_times.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_display_times.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/global_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/global_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_attendanceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_attendanceList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_contact_address.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_contact_address.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_disp_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_disp_history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_place.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_place.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/AdminMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/AdminMoveController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/InputsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/InputsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/View.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/adm_display_times.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/adm_display_times.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/global_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/global_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_attendanceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_attendanceList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_contact_address.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_contact_address.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_disp_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_disp_history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_place.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_place.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/akb_teamD/AkbTeamDApplicationTests.class" beforeDir="false" />
-    </list>
+    <list default="true" id="96dbce5c-906b-49c9-8c30-20594a778f08" name="変更" comment="セッションクラスの追加" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,15 +41,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "imai",
-    "last_opened_file_path": "C:/Users/naoya/Dev_akb_teamD/akb_teamD/akb_teamD",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;imai&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/naoya/Dev_akb_teamD/akb_teamD/akb_teamD&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="AkbTeamDApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.akb_teamD.app.AkbTeamDApplication" />
@@ -110,7 +79,91 @@
       <option name="presentableId" value="Default" />
       <updated>1700546886967</updated>
     </task>
+    <task id="LOCAL-00001" summary="ログイン機能完成">
+      <created>1701404364816</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701404364816</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ログアウトの遷移実装">
+      <created>1701404410803</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701404410803</updated>
+    </task>
+    <task id="LOCAL-00003" summary="idとpassから名前の取得&amp;idから役職の取得">
+      <created>1701404456941</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701404456941</updated>
+    </task>
+    <task id="LOCAL-00004" summary="履歴の更新？">
+      <created>1701404598976</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701404598976</updated>
+    </task>
+    <task id="LOCAL-00005" summary="履歴の更新？">
+      <created>1701404621316</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701404621316</updated>
+    </task>
+    <task id="LOCAL-00006" summary="変更点特になし">
+      <created>1701404912528</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701404912528</updated>
+    </task>
+    <task id="LOCAL-00007" summary="セッション管理の追加">
+      <created>1701404979239</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701404979239</updated>
+    </task>
+    <task id="LOCAL-00008" summary="ログアウト遷移の実装">
+      <created>1701405080823</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701405080823</updated>
+    </task>
+    <task id="LOCAL-00009" summary="テスト用ファイル(未使用)">
+      <created>1701405224966</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1701405224966</updated>
+    </task>
+    <task id="LOCAL-00010" summary="セッションクラスの追加">
+      <created>1701405255094</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1701405255094</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ログイン機能完成" />
+    <MESSAGE value="ログアウトの遷移実装" />
+    <MESSAGE value="idとpassから名前の取得&amp;idから役職の取得" />
+    <MESSAGE value="の取得&amp;idから役職の取得" />
+    <MESSAGE value="履歴の更新？" />
+    <MESSAGE value="変更点特になし" />
+    <MESSAGE value="セッション管理の追加" />
+    <MESSAGE value="ログアウト遷移の実装" />
+    <MESSAGE value="テスト用ファイル(未使用)" />
+    <MESSAGE value="セッションクラスの追加" />
+    <option name="LAST_COMMIT_MESSAGE" value="セッションクラスの追加" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,7 +1,7 @@
 package com.example.akb_teamD.app.controller;
 import com.example.akb_teamD.app.service.UserService;
 
-
+import jakarta.servlet.http.HttpSession;
 import com.example.akb_teamD.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,16 +23,19 @@ import java.util.Map;
 @Controller
 public class GlobalMoveController
 {
+    private HttpSession session;
     private UserService userService;
     @Autowired
-    public GlobalMoveController(UserService userService){
+    public GlobalMoveController(HttpSession session, UserService userService){
+        this.session = session;
         this.userService = userService;
     }
 
     @GetMapping("/")
     public String login() {
-        return "login";
+        return "global_login";
     }
+
 
     @GetMapping("/user_attendanceList")
     public String view_attendance(Model model) {
@@ -42,6 +45,7 @@ public class GlobalMoveController
 
     @GetMapping("/user_diligence")
     public String diligence(Model model){
+        model.addAttribute("name","こんにちは "+session.getAttribute("name")+" さん");
         return "user_diligence";
     }
 

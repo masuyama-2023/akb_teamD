@@ -1,6 +1,8 @@
 package com.example.akb_teamD.app.controller;
 
 import com.example.akb_teamD.app.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +23,11 @@ import java.util.Map;
 
 @Controller
 public class InputsController {
-
+    private HttpSession session;
     private UserService userService;
     @Autowired
-    public InputsController(UserService userService){
+    public InputsController(HttpSession session, UserService userService){
+        this.session = session;
         this.userService = userService;
     }
 
@@ -40,7 +43,7 @@ public class InputsController {
     //出勤退勤ボタン
     @PostMapping("/user_diligence")
     public String diligence(Model model) {
-        return "diligence";
+        return "user_diligence";
     }
 
 
@@ -56,10 +59,7 @@ public class InputsController {
     @GetMapping("/workIn")
     public String workIn(Model model) {
 
-        int id = 5;
-        String name = "test";
-
-        getUserService().insertWorkStart(id,name,getTime());
+        getUserService().insertWorkStart((int)session.getAttribute("id"),(String)session.getAttribute("name"),getTime());
         return "user_place";
     }
     @GetMapping("/workOut")

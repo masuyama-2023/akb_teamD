@@ -88,7 +88,13 @@ public class UserService {
         return getUserRepository().findHistory();
     }
 
+    public String getName(int id, String pass){
+        return getUserRepository().loginCheck(id,pass);
+    }
 
+    public String getRole(int id){
+        return getUserRepository().getRole(id);
+    }
 
 
 

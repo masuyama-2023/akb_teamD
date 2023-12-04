@@ -49,18 +49,15 @@ public class GlobalMoveController
         return "user_attendanceList";
     }
 
-    /////勤怠履歴///////
-    private static String past_month = null;
-    private static String next_month = null;
-
     @GetMapping("/user_diligence")
     public String diligence(Model model){
         return "user_diligence";
     }
 
+    /////勤怠履歴///////
     //TODO ログインしているユーザーの情報から勤怠履歴を取得
-
-    //表示する日付の関数
+    private static String past_month = null;
+    private static String next_month = null;
 
     @GetMapping("/user_disp_history")
     public String history(Model model) {
@@ -69,18 +66,18 @@ public class GlobalMoveController
         //今日の日付を取得
         LocalDate currentDate = LocalDate.now();
         //今日の日にちを取得
-        DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("dd");
+        DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("[]d");
         String day = currentDate.format(dayFormatter);
 
 
         //年月を格納
-        DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("yyyy/MM");
+        DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("yyyy/[]M");
 
         //日付から表示する日付を設定
         if (15 <= Integer.parseInt(day)) {
             //次の月を取得
             LocalDate changeMonth = currentDate.plusMonths(1);
-            DateTimeFormatter nexMonthFormatter = DateTimeFormatter.ofPattern("yyyy/MM");
+            DateTimeFormatter nexMonthFormatter = DateTimeFormatter.ofPattern("yyyy/[]M");
 
             next_month = changeMonth.format(nexMonthFormatter);
             past_month = currentDate.format(monthFormatter);
@@ -88,11 +85,10 @@ public class GlobalMoveController
         } else {
             //前の月を取得
             LocalDate changeMonth = currentDate.minusMonths(1);
-            DateTimeFormatter nexMonthFormatter = DateTimeFormatter.ofPattern("yyyy/MM");
+            DateTimeFormatter nexMonthFormatter = DateTimeFormatter.ofPattern("yyyy/[]M");
 
-
-            next_month = changeMonth.format(monthFormatter);
-            past_month = currentDate.format(nexMonthFormatter);
+            past_month = changeMonth.format(monthFormatter);
+            next_month = currentDate.format(nexMonthFormatter);
         }
 
         model.addAttribute("fromJV_left_month", past_month);
@@ -103,7 +99,7 @@ public class GlobalMoveController
         String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
                 "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working" +
                 " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month +
-                "/15'"/*AND id ="+ID */;
+                "/15'"/*AND id ="+ID */userService.getName(id);
 
         System.out.println(jdbcTemplate.queryForList(sql_sel));
 

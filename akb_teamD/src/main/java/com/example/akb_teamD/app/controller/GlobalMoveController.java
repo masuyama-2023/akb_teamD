@@ -1,9 +1,14 @@
 package com.example.akb_teamD.app.controller;
 import com.example.akb_teamD.app.service.UserService;
 
+<<<<<<< HEAD
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+=======
+import jakarta.servlet.http.HttpSession;
+import com.example.akb_teamD.app.service.UserService;
+>>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -28,9 +33,11 @@ import java.util.Map;
 @Controller
 public class GlobalMoveController
 {
+    private HttpSession session;
     private UserService userService;
     @Autowired
-    public GlobalMoveController(UserService userService){
+    public GlobalMoveController(HttpSession session, UserService userService){
+        this.session = session;
         this.userService = userService;
     }
     @Autowired
@@ -40,8 +47,9 @@ public class GlobalMoveController
 
     @GetMapping("/")
     public String login() {
-        return "login";
+        return "global_login";
     }
+
 
     @GetMapping("/user_attendanceList")
     public String view_attendance(Model model) {
@@ -55,6 +63,7 @@ public class GlobalMoveController
 
     @GetMapping("/user_diligence")
     public String diligence(Model model){
+        model.addAttribute("name","こんにちは "+session.getAttribute("name")+" さん");
         return "user_diligence";
     }
 

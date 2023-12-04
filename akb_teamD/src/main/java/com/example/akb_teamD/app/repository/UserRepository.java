@@ -2,7 +2,12 @@ package com.example.akb_teamD.app.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+<<<<<<< HEAD
 import org.springframework.ui.Model;
+=======
+
+import java.util.ArrayList;
+>>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
 import java.util.List;
 import java.util.Map;
 
@@ -122,6 +127,34 @@ public class UserRepository  implements Create, Delete, View, Update{
     public List<Map<String, Object>> findHistory() {
         sql = "SELECT * FROM attendances_table";
         return jdbcTemplate.queryForList(sql);
+    }
+
+    @Override
+    public String loginCheck(int id, String pass) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        sql = "SELECT name FROM users_table WHERE id = " + id + "AND password = '" + pass +"'";
+        list = jdbcTemplate.queryForList(sql);
+        if(list == null || list.size() == 0){
+            return "No Name";
+        }
+
+        System.out.println(list);
+
+
+        return (String) list.get(0).get("name");
+    }
+
+    @Override
+    public String getRole(int id) {
+        sql = "SELECT role FROM users_table WHERE id = " + id;
+
+        List<Map<String, Object>> list = new ArrayList<>();
+        list = jdbcTemplate.queryForList(sql);
+        if(list == null || list.size() == 0){
+            return "No Role";
+        }
+
+        return (String) jdbcTemplate.queryForList(sql).get(0).get("role");
     }
 
     public JdbcTemplate getJdbcTemplate(){

@@ -4,6 +4,7 @@ import com.example.akb_teamD.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +53,8 @@ public class UserService {
         getUserRepository().place();
     }
 
-    public void updateUserEdit(){
-        getUserRepository().userEdit();
+    public void updateUserEdit(int id,String name,String phone,String mail,String remark) throws SQLException {
+        getUserRepository().userEdit(id,name,phone,mail,remark);
     }
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *

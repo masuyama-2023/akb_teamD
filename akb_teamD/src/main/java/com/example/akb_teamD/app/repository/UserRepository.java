@@ -9,6 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /* = = = = = = = = = = = = = = = = = = = = = =
     TODO メモ(見やすくするためにTODO機能を利用)
         ファイル概要:SQL全般を司る
@@ -86,8 +94,24 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void userEdit() {
+    public void userEdit(int id,String name,String phone,String mail,String remark) throws SQLException {
+        Connection conn = null;
+        String url = "jdbc:postgresql://localhost:5432/springboot";
+        String user = "postgres";
+        String password = "postgres";
+        conn = DriverManager.getConnection(url, user, password);
 
+        sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?, ?, ?, ?, ?)";
+
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, 1);
+        pstmt.setString(2, "あいうえお");
+        pstmt.setString(3, "000-0000-0001");
+        pstmt.setString(4, "aaaaa@gmail.com");
+        pstmt.setString(5, "テスト入力");
+        ResultSet rs = pstmt.executeQuery();
+        jdbcTemplate.update(sql);
+        pstmt.close();
     }
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *

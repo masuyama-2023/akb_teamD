@@ -25,8 +25,8 @@ public class UserService {
         getUserRepository().workStart(id,name,time);
     }
 
-    public void insertAddress(){
-        getUserRepository().address();
+    public void insertAddress(int id,String name,String phone,String mail,String remark){
+        getUserRepository().address(id,name,phone,mail,remark);
     }
 
     public void insertAdmAdd(){
@@ -53,9 +53,7 @@ public class UserService {
         getUserRepository().place();
     }
 
-    public void updateUserEdit(int id,String name,String phone,String mail,String remark) throws SQLException {
-        getUserRepository().userEdit(id,name,phone,mail,remark);
-    }
+    public void updateUserEdit()  {getUserRepository().userEdit();}
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   DELETE文                              *
@@ -89,6 +87,13 @@ public class UserService {
         return getUserRepository().findHistory();
     }
 
+    public String getName(int id, String pass){
+        return getUserRepository().loginCheck(id,pass);
+    }
+
+    public String getRole(int id){
+        return getUserRepository().getRole(id);
+    }
 
 
 

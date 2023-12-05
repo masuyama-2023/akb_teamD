@@ -9,6 +9,6 @@ public interface Update {
     void WorkEnd(); //退勤
     void place(); //勤務地登録
 
-    void userEdit(int id,String name,String phone,String mail,String remark) throws SQLException; //ユーザー編集
+    void userEdit() ; //ユーザー編集
 
 }

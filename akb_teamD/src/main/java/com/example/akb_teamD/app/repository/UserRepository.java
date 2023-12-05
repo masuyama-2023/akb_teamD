@@ -2,13 +2,13 @@ package com.example.akb_teamD.app.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import org.springframework.ui.Model;
 
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import java.sql.*;
 
 import java.sql.Connection;
@@ -28,6 +28,7 @@ import java.sql.Statement;
 
 @Repository
 public class UserRepository  implements Create, Delete, View, Update{
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     private String sql = null;
@@ -47,11 +48,12 @@ public class UserRepository  implements Create, Delete, View, Update{
     public void workStart(int id, String name, String time) {
         getJdbcTemplate().update(
          "INSERT INTO attendances_table (id,name,date,begin_time,status,place) VALUES(" + id + ",'"+ name +"','2023-11-27','" + time + "','出勤中','登録予定') ");
-
     }
 
     @Override
-    public void address() {
+    public void address(int id, String name, String phone, String mail, String remark) {
+        getJdbcTemplate().update(
+                "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa',"+phone+","+mail+","+remark+")");
 
     }
 
@@ -94,25 +96,10 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void userEdit(int id,String name,String phone,String mail,String remark) throws SQLException {
-        Connection conn = null;
-        String url = "jdbc:postgresql://localhost:5432/springboot";
-        String user = "postgres";
-        String password = "postgres";
-        conn = DriverManager.getConnection(url, user, password);
+    public void userEdit()  {
 
-        sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?, ?, ?, ?, ?)";
-
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, 1);
-        pstmt.setString(2, "あいうえお");
-        pstmt.setString(3, "000-0000-0001");
-        pstmt.setString(4, "aaaaa@gmail.com");
-        pstmt.setString(5, "テスト入力");
-        ResultSet rs = pstmt.executeQuery();
-        jdbcTemplate.update(sql);
-        pstmt.close();
     }
+
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   SELECT文                              *
@@ -149,10 +136,40 @@ public class UserRepository  implements Create, Delete, View, Update{
     public List<Map<String, Object>> findHistory() {
         sql = "SELECT * FROM attendances_table";
         return jdbcTemplate.queryForList(sql);
+    }
 
+    @Override
+    public String loginCheck(int id, String pass) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        sql = "SELECT name FROM users_table WHERE id = " + id + "AND password = '" + pass +"'";
+        list = jdbcTemplate.queryForList(sql);
+        if(list == null || list.size() == 0){
+            return "No Name";
+        }
+
+        System.out.println(list);
+
+
+        return (String) list.get(0).get("name");
+    }
+
+    @Override
+    public String getRole(int id) {
+        sql = "SELECT role FROM users_table WHERE id = " + id;
+
+        List<Map<String, Object>> list = new ArrayList<>();
+        list = jdbcTemplate.queryForList(sql);
+        if(list == null || list.size() == 0){
+            return "No Role";
+        }
+
+        return (String) jdbcTemplate.queryForList(sql).get(0).get("role");
     }
 
     public JdbcTemplate getJdbcTemplate(){
         return jdbcTemplate;
     }
+
+
+
 }

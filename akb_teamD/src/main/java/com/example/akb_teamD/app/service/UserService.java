@@ -92,21 +92,12 @@ public class UserService {
         return getUserRepository().loginCheck(id,pass);
     }
 
-<<<<<<< HEAD
-=======
     public String getRole(int id){
         return getUserRepository().getRole(id);
     }
 
-
-
-
-
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
     public UserRepository getUserRepository(){
         return userRepository;
     }
-
-
 
 }

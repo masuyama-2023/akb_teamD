@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
     <list default="true" id="96dbce5c-906b-49c9-8c30-20594a778f08" name="変更" comment="imai">
-      <change afterPath="$PROJECT_DIR$/.idea/fileColors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/Create.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
-=======
-    <list default="true" id="96dbce5c-906b-49c9-8c30-20594a778f08" name="変更" comment="セッションクラスの追加" />
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,11 +27,8 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-<<<<<<< HEAD
         <entry key="$PROJECT_DIR$/.." value="imai" />
-=======
         <entry key="$PROJECT_DIR$/.." value="main" />
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -53,23 +48,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "imai",
-    "last_opened_file_path": "C:/Users/naoya/Dev_akb_teamD/akb_teamD/akb_teamD",
-    "project.structure.last.edited": "プロジェクト",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
-  }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\naoya\akb_teamD\teamD\akb_teamD" />
-    </key>
-=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
@@ -98,7 +76,6 @@
         <item itemvalue="アプリケーション.AkbTeamDApplication" />
       </list>
     </recent_temporary>
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="アプリケーションレベル" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -182,7 +159,6 @@
     <option name="localTasksCounter" value="11" />
     <servers />
   </component>
-<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -195,10 +171,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="imai" />
-    <option name="LAST_COMMIT_MESSAGE" value="imai" />
-=======
-  <component name="VcsManagerConfiguration">
     <MESSAGE value="ログイン機能完成" />
     <MESSAGE value="ログアウトの遷移実装" />
     <MESSAGE value="idとpassから名前の取得&amp;idから役職の取得" />
@@ -210,18 +182,14 @@
     <MESSAGE value="テスト用ファイル(未使用)" />
     <MESSAGE value="セッションクラスの追加" />
     <option name="LAST_COMMIT_MESSAGE" value="セッションクラスの追加" />
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
-<<<<<<< HEAD
-=======
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/akb_teamD$AkbTeamDApplication.ic" NAME="AkbTeamDApplication のカバレッジ結果" MODIFIED="1701160174989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.akb_teamD.app.*</FILTER>
     </SUITE>
   </component>
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
 </project>

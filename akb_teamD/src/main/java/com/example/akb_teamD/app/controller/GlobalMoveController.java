@@ -1,14 +1,10 @@
 package com.example.akb_teamD.app.controller;
 import com.example.akb_teamD.app.service.UserService;
-
-<<<<<<< HEAD
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-=======
 import jakarta.servlet.http.HttpSession;
 import com.example.akb_teamD.app.service.UserService;
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -108,13 +104,12 @@ public class GlobalMoveController
         String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
                 "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working" +
                 " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month +
-                "/15'"/*AND id ="+ID */userService.getName(id);
+                "/15'AND id ="+ session.getAttribute("id");
 
         System.out.println(jdbcTemplate.queryForList(sql_sel));
 
         List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
         model.addAttribute("fromJV_sel", attendences);
-        //
 
         return "user_disp_history";
     }
@@ -157,7 +152,7 @@ public class GlobalMoveController
         String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
                 "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working" +
                 " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month +
-                "/15' "/*AND id ="ID;*/ ;
+                "/15' AND id ="+session.getAttribute("id");
 
         System.out.println(jdbcTemplate.queryForList(sql_sel));
 

@@ -16,8 +16,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -189,10 +194,42 @@ public class GlobalMoveController
     }
 
 
-    /*多分ここが自分の担当*/
+    /*多分ここが自分（益山）の担当だと思う*/
     @GetMapping("/user_contact_address")
-    public String address(Model model) {
-        return "user_contact_address";
+    public String address(HttpServletRequest request,
+                          @RequestParam(name = "phone",required = false) String phone,
+                          @RequestParam(name = "mail",required = false) String mail,
+                          @RequestParam(name = "remark",required = false) String remark,
+                          Model model) throws SQLException {
+
+            // ボタンがクリックされたかどうかを判定
+            String action = request.getParameter("action");
+            if ("登録".equals(action)) {
+                Connection conn = null;
+                String url = "jdbc:postgresql://localhost:5432/springboot";
+                String user = "postgres";
+                String password = "postgres";
+
+
+                String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
+                //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'abc',?,?,?)";
+                //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa','bbb','ccc','ddd')";
+
+                conn = DriverManager.getConnection(url, user, password);
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "aaa");
+                pstmt.setString(3, phone);
+                pstmt.setString(4, mail);
+                pstmt.setString(5, remark);
+                int num = pstmt.executeUpdate();
+
+                //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa','bbb','ccc,'ddd')";
+                jdbcTemplate.update(sql);
+                pstmt.close();
+            }
+        return "/user_contact_address";
+
     }
 
 

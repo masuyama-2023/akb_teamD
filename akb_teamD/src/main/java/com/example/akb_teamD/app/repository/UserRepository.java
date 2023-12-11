@@ -3,19 +3,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.ui.Model;
-
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.sql.*;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /* = = = = = = = = = = = = = = = = = = = = = =
     TODO メモ(見やすくするためにTODO機能を利用)
@@ -51,11 +42,13 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void address(int id, String name, String phone, String mail, String remark) {
+    public void address(String phone, String mail, String remark) {
         getJdbcTemplate().update(
                 "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa',"+phone+","+mail+","+remark+")");
 
+
     }
+
 
     @Override
     public void adm_add() {

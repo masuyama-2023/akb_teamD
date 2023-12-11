@@ -25,8 +25,8 @@ public class UserService {
         getUserRepository().workStart(id,name,time);
     }
 
-    public void insertAddress(int id,String name,String phone,String mail,String remark){
-        getUserRepository().address(id,name,phone,mail,remark);
+    public void insertAddress(String phone,String mail,String remark){
+        getUserRepository().address(phone,mail,remark);
     }
 
     public void insertAdmAdd(){

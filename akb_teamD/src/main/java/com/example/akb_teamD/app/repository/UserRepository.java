@@ -2,12 +2,8 @@ package com.example.akb_teamD.app.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-<<<<<<< HEAD
 import org.springframework.ui.Model;
-=======
-
 import java.util.ArrayList;
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
 import java.util.List;
 import java.util.Map;
 
@@ -67,8 +63,8 @@ public class UserRepository  implements Create, Delete, View, Update{
      *                                   UPDATE文                              *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    @Override
-    public void breakStart() {
+    /*@Override*/
+    public void breakStart(int id,String date,String time) {
 
     }
 

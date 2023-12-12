@@ -9,8 +9,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import com.example.akb_teamD.app.service.UserService;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +39,9 @@ import java.util.Map;
         Get     :URLに直接記載または未入力の場合動作
   = = = = = = = = = = = = = = = = = = = = = =*/
 
-
+@ConfigurationProperties(prefix = "spring.datasource")
+@Component
+@Data
 @Controller
 public class GlobalMoveController
 {
@@ -194,7 +200,24 @@ public class GlobalMoveController
     }
 
 
-    /*多分ここが自分（益山）の担当だと思う*/
+
+    /*-------多分ここからが自分（益山）の担当だと思う-------------*/
+
+
+    public static class DemoGetDataSource {
+        public static String url;
+        public static String username;
+        public static String password;
+
+        public static String getDataSource() {
+
+            return "url=" + url
+                    + ",username=" + username
+                    + ",password=" + password;
+        }
+
+
+    }
     @GetMapping("/user_contact_address")
     public String address(HttpServletRequest request,
                           @RequestParam(name = "phone",required = false) String phone,
@@ -202,29 +225,31 @@ public class GlobalMoveController
                           @RequestParam(name = "remark",required = false) String remark,
                           Model model) throws SQLException {
 
+        String dataSource = DemoGetDataSource.getDataSource();
+        model.addAttribute("dataSource",dataSource);
+
             // ボタンがクリックされたかどうかを判定
             String action = request.getParameter("action");
             if ("登録".equals(action)) {
-                Connection conn = null;
-                String url = "jdbc:postgresql://localhost:5432/springboot";
-                String user = "postgres";
-                String password = "postgres";
 
 
-                String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
-                //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'abc',?,?,?)";
+                //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
+                String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'abc',?,?,?)";
                 //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa','bbb','ccc','ddd')";
 
-                conn = DriverManager.getConnection(url, user, password);
+                Connection conn = DriverManager.getConnection(
+                        DemoGetDataSource.url,
+                        DemoGetDataSource.username,
+                        DemoGetDataSource.password);
+
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setInt(1, 1);
-                pstmt.setString(2, "aaa");
+                //pstmt.setInt(1, 1);
+                //pstmt.setString(2, "aaa");
                 pstmt.setString(3, phone);
                 pstmt.setString(4, mail);
                 pstmt.setString(5, remark);
-                int num = pstmt.executeUpdate();
+                pstmt.executeUpdate();
 
-                //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa','bbb','ccc,'ddd')";
                 jdbcTemplate.update(sql);
                 pstmt.close();
             }

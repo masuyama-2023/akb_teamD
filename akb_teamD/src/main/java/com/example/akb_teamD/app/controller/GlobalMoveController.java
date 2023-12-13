@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -61,7 +61,7 @@ public class GlobalMoveController
     private static String past_month = null;
     private static String next_month = null;
 
-    public static void Click_MonthMutation(String action){
+    public static void Click_MonthMutation(String action) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/[]M");
         //計算をするために型を変える
         YearMonth pastMonth_date = YearMonth.parse(past_month, formatter);
@@ -80,9 +80,10 @@ public class GlobalMoveController
             past_month = past_resultDate.format(formatter);
             next_month = next_resultDate.format(formatter);
         } else {
-            System.out.println("エラー");
+            System.out.println("Click_MonthMutation無効");
         }
     }
+
     @GetMapping("/user_disp_history")
     public String history(Model model) {
         //今日の日付を取得
@@ -110,6 +111,7 @@ public class GlobalMoveController
         //formに月を送る
         model.addAttribute("fromJV_left_month", past_month);
         model.addAttribute("fromJV_right_month", next_month);
+
         //postgres
         String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
                 "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working" +
@@ -156,6 +158,12 @@ public class GlobalMoveController
         past_month = currentDate.format(Formatter);
         //formに月を送る
         model.addAttribute("fromJV_month", past_month);
+
+        //postgres(user)
+        String sql_user = "SELECT *FROM users_table";
+        List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList(sql_user);
+        model.addAttribute("fromJV_user", usersList);
+
         //postgres
         String sql_sel = "SELECT id,name,TO_CHAR(SUM((end_time - begin_time) - (break_end - break_begin))," +
                 " 'HH24:MI:SS')" + " AS working_sum"
@@ -168,7 +176,9 @@ public class GlobalMoveController
         return "adm_display_times";
     }
     @PostMapping("/adm_display_times")
-    public String adm_history_click(HttpServletRequest request, Model model ) {
+    public String adm_history_click(HttpServletRequest request, Model model,
+                                    @RequestParam("place") String selectedPlace) {
+        String search = selectedPlace;
         // ボタンがクリックされたかどうかを判定
         String action = request.getParameter("action");
         // 月の変化処理
@@ -176,11 +186,21 @@ public class GlobalMoveController
         //formに月を送る
         model.addAttribute("fromJV_month", past_month);
 
+        //postgres(user)
+        String sql_user = "SELECT *FROM users_table;";
+        List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList(sql_user);
+        model.addAttribute("fromJV_user", usersList);
+
+        if ("検索".equals(action)&& !"'f'".equals(search)) {
+            search = "id";
+        }
+
         //postgres
         String sql_sel = "SELECT id,name,TO_CHAR(SUM((end_time - begin_time) - (break_end - break_begin))," +
                 " 'HH24:MI:SS')" + " AS working_sum"
                 + " FROM attendances_table"
                 + " WHERE '" + past_month + "/01' <= date AND date < '" + next_month +"/01'"
+                + "AND "+selectedPlace+"="+search
                 + " GROUP BY id,name";
 
         List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);

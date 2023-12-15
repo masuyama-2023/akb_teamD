@@ -209,6 +209,74 @@ public class GlobalMoveController
         return "adm_display_times";
     }
     ////////////////////////////
+    ///運営用、選択した人の勤務時間集計一覧////
+    @GetMapping("/adm_select_disp_times")
+    public String adm_slect(Model model) {
+        //今日の日付を取得
+        LocalDate currentDate = LocalDate.now();
+        //今日の日にちを取得
+        DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("[]d");
+        String day = currentDate.format(dayFormatter);
+        //年月を格納
+        DateTimeFormatter Formatter = DateTimeFormatter.ofPattern("yyyy/[]M");
+
+        //日付から表示する日付を設定
+        if (15 <= Integer.parseInt(day)) {
+            //次の月を取得
+            LocalDate changeMonth = currentDate.plusMonths(1);
+
+            next_month = changeMonth.format(Formatter);
+            past_month = currentDate.format(Formatter);
+        } else {
+            //前の月を取得
+            LocalDate changeMonth = currentDate.minusMonths(1);
+
+            past_month = changeMonth.format(Formatter);
+            next_month = currentDate.format(Formatter);
+        }
+        //formに月を送る
+        model.addAttribute("fromJV_left_month", past_month);
+        model.addAttribute("fromJV_right_month", next_month);
+
+        //postgres(user)
+        String sql_user = "SELECT *FROM users_table";
+        List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList(sql_user);
+        model.addAttribute("fromJV_user", usersList);
+
+        return "adm_select_disp_times";
+    }
+    @PostMapping("/adm_select_disp_times")
+    public String adm_slect_click(HttpServletRequest request, Model model,
+                                    @RequestParam("place") String selectedPlace) {
+        String search = selectedPlace;
+        // ボタンがクリックされたかどうかを判定
+        String action = request.getParameter("action");
+        // 月の変化処理
+        Click_MonthMutation(action);
+        //formに月を送る
+        model.addAttribute("fromJV_left_month", past_month);
+        model.addAttribute("fromJV_right_month", next_month);
+
+        //postgres(user)
+        String sql_user = "SELECT *FROM users_table;";
+        List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList(sql_user);
+        model.addAttribute("fromJV_user", usersList);
+
+        if ("検索".equals(action)&& !"null".equals(search)) {
+            search = "id";
+        }
+
+        //postgres
+        String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum,"
+               + "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working"
+               + " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month
+               + "/15' AND "+selectedPlace+"="+search;
+
+        List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
+        model.addAttribute("fromJV_sel", attendences);
+        return "adm_select_disp_times";
+    }
+    ////////////////////////////
 
     // past_monthのgetter
     public static String getPastMonth() {

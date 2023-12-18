@@ -16,6 +16,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+
 /* = = = = = = = = = = = = = = = = = = = = = =
     TODO メモ(見やすくするためにTODO機能を利用)
         ファイル概要:ユーザー用フォームの遷移を管理 & 全体で使うクラスの定義を行う
@@ -204,56 +206,80 @@ public class GlobalMoveController
     /*-------多分ここからが自分（益山）の担当だと思う-------------*/
 
 
-    public static class DemoGetDataSource {
+    @Value("${spring.datasource.url}")
+    private static String database_test;
+    @Component
+    public static class DatabaseProperties {
+
+
+        public static String getDatabase() {
+            System.out.println(database_test);
+            return database_test;
+        }
+    }
+    @Service
+    public class DemoGetDataSource {
+        private final DatabaseProperties databaseProperties;
+        @Autowired
+        public DemoGetDataSource(DatabaseProperties databaseProperties) {
+            this.databaseProperties = databaseProperties;
+        }
         public static String url;
         public static String username;
         public static String password;
-
         public static String getDataSource() {
-
             return "url=" + url
                     + ",username=" + username
                     + ",password=" + password;
         }
-
-
     }
-    @GetMapping("/user_contact_address")
+
+    @GetMapping ("/user_contact_address")
+    public String address_get(){
+        return "user_contact_address";
+    }
+    @PostMapping("/user_contact_address")
     public String address(HttpServletRequest request,
-                          @RequestParam(name = "phone",required = false) String phone,
-                          @RequestParam(name = "mail",required = false) String mail,
-                          @RequestParam(name = "remark",required = false) String remark,
+                          @RequestParam(name = "phone", required = false) String phone,
+                          @RequestParam(name = "mail", required = false) String mail,
+                          @RequestParam(name = "remark", required = false) String remark,
                           Model model) throws SQLException {
 
+        // 取得した内容をコンソールに表示
+
+        System.out.println(DatabaseProperties.getDatabase());
+        System.out.println(DemoGetDataSource.url);
+        System.out.println("入力されたテキスト: " + phone);
+        System.out.println("入力されたテキスト: " + mail);
+        System.out.println("入力されたテキスト: " + remark);
+
+
         String dataSource = DemoGetDataSource.getDataSource();
-        model.addAttribute("dataSource",dataSource);
+        model.addAttribute("dataSource", dataSource);
 
-            // ボタンがクリックされたかどうかを判定
-            String action = request.getParameter("action");
-            if ("登録".equals(action)) {
+        String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
+        //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa','bbb','ccc','ddd')";
 
 
-                //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
-                String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'abc',?,?,?)";
-                //String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa','bbb','ccc','ddd')";
+        Connection conn = DriverManager.getConnection(
+                DemoGetDataSource.url,
+                DemoGetDataSource.username,
+                DemoGetDataSource.password);
 
-                Connection conn = DriverManager.getConnection(
-                        DemoGetDataSource.url,
-                        DemoGetDataSource.username,
-                        DemoGetDataSource.password);
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, (int) session.getAttribute("id"));
+        pstmt.setString(2, (String) session.getAttribute("name"));
+        pstmt.setString(3, phone);
+        pstmt.setString(4, mail);
+        pstmt.setString(5, remark);
+        pstmt.executeUpdate(sql);
 
-                PreparedStatement pstmt = conn.prepareStatement(sql);
-                //pstmt.setInt(1, 1);
-                //pstmt.setString(2, "aaa");
-                pstmt.setString(3, phone);
-                pstmt.setString(4, mail);
-                pstmt.setString(5, remark);
-                pstmt.executeUpdate();
+        jdbcTemplate.update(sql);
+        pstmt.close();
 
-                jdbcTemplate.update(sql);
-                pstmt.close();
-            }
-        return "/user_contact_address";
+
+
+        return "user_contact_address";
 
     }
 

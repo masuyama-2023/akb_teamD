@@ -289,7 +289,7 @@ public class DatabaseProperties {
         String sql3 = "SELECT name FROM address_table WHERE id = " +(int) session.getAttribute("id") ;
         try (Connection conn = DriverManager.getConnection(url, username, password)){
 
-            System.out.println("try中");
+
             List<Map<String, Object>> list = new ArrayList<>();
             list = jdbcTemplate.queryForList(sql3);
             if(list == null || list.size() == 0) {

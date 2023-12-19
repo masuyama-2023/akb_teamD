@@ -4,6 +4,7 @@ import com.example.akb_teamD.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +25,8 @@ public class UserService {
         getUserRepository().workStart(id,name,time);
     }
 
-    public void insertAddress(){
-        getUserRepository().address();
+    public void insertAddress(String phone,String mail,String remark){
+        getUserRepository().address(phone,mail,remark);
     }
 
     public void insertAdmAdd(){
@@ -36,8 +37,8 @@ public class UserService {
      *                                   UPDATE文                              *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    public void updateBreakStart(int id,String date,String time){
-        getUserRepository().breakStart(id,date,time);
+    public void updateBreakStart(){
+        getUserRepository().breakStart();
     }
 
     public void updateBreakEnd(){
@@ -52,9 +53,7 @@ public class UserService {
         getUserRepository().place();
     }
 
-    public void updateUserEdit(){
-        getUserRepository().userEdit();
-    }
+    public void updateUserEdit()  {getUserRepository().userEdit();}
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   DELETE文                              *
@@ -96,8 +95,15 @@ public class UserService {
         return getUserRepository().getRole(id);
     }
 
+
+
+
+
+
     public UserRepository getUserRepository(){
         return userRepository;
     }
+
+
 
 }

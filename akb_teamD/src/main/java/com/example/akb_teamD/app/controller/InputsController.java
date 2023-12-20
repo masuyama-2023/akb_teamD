@@ -4,10 +4,13 @@ import com.example.akb_teamD.app.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,10 +24,14 @@ import java.util.Map;
         Get     :URLに直接記載または未入力の場合動作
   = = = = = = = = = = = = = = = = = = = = = =*/
 
+
+
 @Controller
 public class InputsController {
     private HttpSession session;
     private UserService userService;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
     @Autowired
     public InputsController(HttpSession session, UserService userService){
         this.session = session;
@@ -36,9 +43,11 @@ public class InputsController {
     public String getTime() {
         Date today = new Date();
         //System.out.println(new SimpleDateFormat("hh:mm:ss").format(today));
-        return new SimpleDateFormat("hh:mm:ss").format(today);
+        return new SimpleDateFormat("HH:mm:ss").format(today);
 
     }
+
+
 
     //出勤退勤ボタン
     @PostMapping("/user_diligence")
@@ -47,10 +56,23 @@ public class InputsController {
     }
 
 
-    //データベースに情報の挿入&表示
+
+    @RequestMapping("user_place")
+    public String Placepage(){
+        return "user_place";
+    }
+
     @PostMapping("/user_attendanceList")
-    public String attendanceList(Model model) {
+    public String PlaceInput(@RequestParam("place") String place, Model model, HttpSession session){
+
+        System.out.println("勤務地" + place);
+        System.out.println(session.getAttribute("id"));
+
+        String sql = "UPDATE attendances_table SET place = ? WHERE id = ?";
+        jdbcTemplate.update(sql, place, (int)session.getAttribute("id"));
+
         return "user_attendanceList";
+
     }
 
 

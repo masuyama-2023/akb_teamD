@@ -2,7 +2,8 @@ package com.example.akb_teamD.app.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +42,13 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void address() {
+    public void address(String phone, String mail, String remark) {
+        getJdbcTemplate().update(
+                "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa',"+phone+","+mail+","+remark+")");
+
 
     }
+
 
     @Override
     public void adm_add() {
@@ -63,8 +68,8 @@ public class UserRepository  implements Create, Delete, View, Update{
      *                                   UPDATE文                              *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    /*@Override*/
-    public void breakStart(int id,String date,String time) {
+    @Override
+    public void breakStart() {
 
     }
 
@@ -84,9 +89,10 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void userEdit() {
+    public void userEdit()  {
 
     }
+
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   SELECT文                              *

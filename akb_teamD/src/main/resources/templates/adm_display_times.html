@@ -24,6 +24,14 @@
 
         <p>
         <form method="post" action="/adm_display_times">
+            <select class="place" name="place">
+                <option value="'f'" text=""></option>
+                <option th:each="usersList : ${fromJV_user}" th:value="${usersList['id']}"
+                        th:text="${usersList['name']}"></option>
+            </select>
+
+            <input type="submit" value="検索" id="button" name="action"></input></br></br>
+
             <input type="submit" class="btn-square-shadow" value="前月へ"  id="back" name="action"></input>
             <input type="submit" class="btn-square-shadow" value="次月へ"  id="next" name="action"></input>
         </form>

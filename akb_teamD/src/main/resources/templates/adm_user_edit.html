@@ -12,33 +12,32 @@
 
     <body>
         <trans class="translate">
-            <li><a href="adm_userList" >ユーザー管理</a></li>
-            <li><a href="#" >勤務場所管理</a></li>
-            <li><a href="adm_display_times" >勤怠時間集計</a></li>
+            <li><a href="user_diligence" >勤怠入力</a></li>
+            <li><a href="user_attendanceList" >勤怠状況一覧</a></li>
+            <li><a href="adm_user_list" >ユーザー管理</a></li>
+            <li><a href="adm_times" >勤怠時間集計</a></li>
             <li><a href="logout_check" >ログアウト</a></li>
          </trans>
  
 
         </br></br>
 
-        <form action="adm_userList.html" method="post" >
+        <form action="user_edit_check" method="post" >
             <h1 class="center">ユーザー編集</h1>
             <p>名前</p>
-            <p><input type="text" name="name" placeholder="選択したユーザー名"/></p>
+            <p><input type="text" name="name" th:value="${name}"/></p>
             <p>ログインID</p>
-            <p><input type="text" name="id"/></p>
+            <p><input type="text" name="afterId" th:value="${afterId}"/></p>
             <p>Password</p>
-            <p><input type="password" name="password"/></p>
-            <p><select class="place" name="place">
-                <option value="Home">自宅</option>
-                <option value="Tokyo">東京本社</option>
-                <option value="Office">営業所</option>
-    
-            </select>    
-        </p>
-            <p><input type="submit" value="ユーザー追加" id="button"></p>
+            <p><input type="password" name="password" th:value="${pass}" /></p>
+
+            <input type="hidden" name="beforeId" th:value="${beforeId}"/>
+            <p><input type="submit" value="編集適用" id="button"></p>
         </form>
 
+        <form th:action="@{/adm_user_list}" name="new" method="get">
+            <p><input type="submit"  value="戻る"></p>
+        </form>
     </body>
 
 </html>

@@ -2,12 +2,10 @@ package com.example.akb_teamD.app.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-<<<<<<< HEAD
-import org.springframework.ui.Model;
-=======
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
+
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +19,7 @@ import java.util.Map;
 
 
 @Repository
-public class UserRepository  implements Create, Delete, View, Update{
+public class UserRepository  implements Insert, Delete, View, Update{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -88,8 +86,9 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void userEdit() {
-
+    public void userEdit(int no, String name, int id,String pass) {
+        sql = "UPDATE users_table SET id = "+ id +", name = '"+ name +"',password = '"+ pass +"' WHERE no = " + no;
+        jdbcTemplate.update(sql);
     }
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
@@ -111,9 +110,12 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     @Override
     public List<Map<String, Object>> findUserList() {
-        sql = "SELECT * FROM attendances_table";
+        sql = "SELECT * FROM users_table ORDER BY no ASC";
         return jdbcTemplate.queryForList(sql);
-
+    }
+    public List<Map<String,Object>> getUserById(int id){
+        sql="SELECT * FROM users_table WHERE id = "+ id;
+        return jdbcTemplate.queryForList(sql);
     }
 
     @Override
@@ -155,6 +157,18 @@ public class UserRepository  implements Create, Delete, View, Update{
         }
 
         return (String) jdbcTemplate.queryForList(sql).get(0).get("role");
+    }
+
+    public int getUserNo(int id) {
+        sql = "SELECT no FROM users_table WHERE id = "+id;
+
+        List<Map<String, Object>> list = new ArrayList<>();
+        list = jdbcTemplate.queryForList(sql);
+        if(list == null || list.size() == 0){
+            return 0;
+        }
+        System.out.println("レコードが存在します。");
+        return (int) jdbcTemplate.queryForList(sql).get(0).get("no");
     }
 
     public JdbcTemplate getJdbcTemplate(){

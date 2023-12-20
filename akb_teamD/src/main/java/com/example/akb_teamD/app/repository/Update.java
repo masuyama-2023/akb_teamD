@@ -7,6 +7,6 @@ public interface Update {
     void WorkEnd(); //退勤
     void place(); //勤務地登録
 
-    void userEdit(); //ユーザー編集
+    void userEdit(int no, String name,int id,String pass); //ユーザー編集
 
 }

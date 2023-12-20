@@ -12,6 +12,11 @@
 
     <body>
         <trans class="translate">
+            <th:block th:with="role = ${role}">
+                <th:block th:if="${role == 'admin' }    ">
+                    <li><a href="adm_user_list" >管理者ページ</a></li>
+                </th:block>
+            </th:block>
             <li><a href="user_diligence" >勤怠入力</a></li>
             <li><a href="user_place" >勤務場所登録</a></li>
             <li><a href="user_contact_address" >連絡先登録</a></li>

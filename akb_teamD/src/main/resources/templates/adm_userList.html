@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="ja">
     <head>
         <meta charset="utf-8">
         <title></title>
@@ -11,49 +11,127 @@
     </head>
 
     <body>
-        <trans class="translate">
-            <li><a href="adm_userList" >ユーザー管理</a></li>
-            <li><a href="#" >勤務場所管理</a></li>
-            <li><a href="adm_display_times" >勤怠時間集計</a></li>
+
+    <!-- ラジオボタン操作時の処理 -->
+
+    <script>
+
+                    function radioCheck(){
+
+                        var flag = false;
+
+
+                        for(var i = 0; i<document.form_edit.userId.length; i++){
+                            if(document.form_edit.userId[i].checked){
+                                flag = true;
+                                console.log(document.form_edit.userId[i].value);
+                            }
+                        }
+
+
+                        return flag;
+                    }
+
+                    function selectRadio(param1){
+                        var elems =  document.querySelectorAll(".tdColor");
+                            //テーブルの背景色の初期化
+                            for(i = 0;i < elems.length;i++){
+                                elems[i].style.backgroundColor = null;
+                                elems[i].style.color=null;
+                            }
+
+                        const td = param1;
+                        td.style.background = "skyblue";
+                        console.log(param1.id);
+                        //子要素の取得
+                        let get_child = '#' + param1.id + ' :first-child';
+                        const child = document.querySelector(get_child);
+
+                       //孫要素の取得
+                        get_child = '#' + child.id + ' :first-child';
+                        const grandchild = document.querySelector(get_child);
+                        const element = grandchild;
+
+                        element.checked = true;
+
+                    }
+
+    </script>
+
+
+
+
+    <trans class="translate">
+
+            <li><a href="user_diligence" >勤怠入力</a></li>
+            <li><a href="user_attendanceList" >勤怠状況一覧</a></li>
+            <li><a href="adm_user_list" >ユーザー管理</a></li>
+            <li><a href="adm_times" >勤怠時間集計</a></li>
             <li><a href="logout_check" >ログアウト</a></li>
          </trans>
- 
+
+
         </br></br></br>
         <h1 class="center">ユーザー 一覧</h1></br>
 
-        <form th:action="@{/adm_user_add}" method="post">
+        <form th:action="@{/adm_user_add}" name="new" method="get">
             <center_right><input type="submit" class="btn-square-shadow" value="新規登録"  id="New"></input></center_right>
         </form>
 
+        <form method="post" th:action="@{/edit}" name="form_edit">
+            <table id="table_center" border="1" width="1000"  >
+                <script th:inline="javascript">
 
-        <table id="table_center" border="1" width="1000" >
-            <tr>
-                <th>名前</th>
-                <th>名前</th>
-                <th>名前</th>
-                <th>名前</th>
-                <th>名前</th>
-            </tr>
-            <tr class="record_center">
-                <td><a href="adm_user_edit.html">山田太郎</a></td>
-                <td><a href="adm_user_edit.html">名無し1</a></td>
-                <td><a href="adm_user_edit.html">名無し2</a></td>
-                <td><a href="adm_user_edit.html">名無し3</a></td>
-                <td><a href="adm_user_edit.html">名無し4</a></td>
-            </tr>
-            <tr class="record_center">
-                <td><a href="adm_user_edit.html">名無し5</a></td>
-                <td><a href="adm_user_edit.html">名無し6</a></td>
-                <td><a href="adm_user_edit.html">名無し7</a></td>
-                <td><a href="adm_user_edit.html">名無し8</a></td>
-                <td><a href="adm_user_edit.html">名無し9</a></td>
-            </tr>
+                document.write('<tr>');
+                for(var i = 0; i < 5;i++){
+                    document.write("<th>名前</th>");
+                }
+               document.write('</tr>');
+
+                </script>
 
 
-         </table>
 
 
-        
+                <!-- #numbers.sequenceの値をiに格納する -->
+                <!-- 値は0から開始して2で終了する為、0,1,2,3,4,5,6,7,8,....,49の50回ループする -->
+                <th:block th:each="i : ${#numbers.sequence(0,49)}">
+                    <th:block th:if="__${i}__ lt ${#lists.size(users)}">
+                    <th:block th:if="${i} != 0">
+                        <th:block th:if="${i} % 5 == 0">
+                            <tr>
+                        </th:block>
+                    </th:block>
+
+                    <td onclick="selectRadio(this)" class="tdColor" th:id="${#ids.seq('grand_')}" style="text-align: center;">
+                        <label th:id="${#ids.seq('parent_')}">
+                            <input
+                            type="radio"
+                            name="userId"
+                            th:value="${users[__${i}__].id}"
+                            th:text="${users[__${i}__].name}"
+                            onchange="check_form()"
+                            th:id="${#ids.seq('child_')}"
+                            class="hidden"
+                             />
+
+                        </label>
+                    </td>
+                    <th:block th:if="${i} != 0">
+                        <th:block th:if="${i} % 5 == 0">
+                            </tr>
+                        </th:block>
+                    </th:block>
+
+                    </th:block>
+                </th:block>
+            </table>
+            <button type="submit" onclick="return radioCheck()">ユーザー編集</button>
+        </form>
+
+
+
+
     </body>
 
 </html>

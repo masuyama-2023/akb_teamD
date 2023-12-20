@@ -4,7 +4,6 @@ import com.example.akb_teamD.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -52,8 +51,8 @@ public class UserService {
         getUserRepository().place();
     }
 
-    public void updateUserEdit(){
-        getUserRepository().userEdit();
+    public void updateUserEdit( int no,String name,int id,String pass){
+        getUserRepository().userEdit(no, name,id,pass);
     }
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
@@ -81,6 +80,11 @@ public class UserService {
     public List<Map<String,Object>> readUserList(){
         return getUserRepository().findUserList();
     }
+    public List<Map<String,Object>> getUserById(int id){
+        return getUserRepository().getUserById(id);
+    }
+
+
     public List<Map<String,Object>> readSelectTimes(){
         return getUserRepository().findSelectTimes();
     }
@@ -92,17 +96,19 @@ public class UserService {
         return getUserRepository().loginCheck(id,pass);
     }
 
-<<<<<<< HEAD
-=======
+
     public String getRole(int id){
         return getUserRepository().getRole(id);
+    }
+
+    public int getUserNo(int id){
+        return getUserRepository().getUserNo(id);
     }
 
 
 
 
 
->>>>>>> 03b055e0d0ab0201f0a7ef18da1ee62015c8df20
     public UserRepository getUserRepository(){
         return userRepository;
     }

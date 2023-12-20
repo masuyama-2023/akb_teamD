@@ -41,8 +41,10 @@ public class InputsController {
     }
 
     //出勤退勤ボタン
+    //もしかしたら不要(login_checkだけで十分)
     @PostMapping("/user_diligence")
     public String diligence(Model model) {
+        model.addAttribute("role",(String)session.getAttribute("role") );
         return "user_diligence";
     }
 
@@ -50,6 +52,7 @@ public class InputsController {
     //データベースに情報の挿入&表示
     @PostMapping("/user_attendanceList")
     public String attendanceList(Model model) {
+        model.addAttribute("role",(String)session.getAttribute("role") );
         return "user_attendanceList";
     }
 
@@ -58,7 +61,7 @@ public class InputsController {
     //TODO 勤怠管理ボタンの中身実装(return値は仮入力されたもの)
     @GetMapping("/workIn")
     public String workIn(Model model) {
-
+        model.addAttribute("role",(String)session.getAttribute("role") );
         getUserService().insertWorkStart((int)session.getAttribute("id"),(String)session.getAttribute("name"),getTime());
         return "user_place";
     }

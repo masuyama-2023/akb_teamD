@@ -8,10 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 /* = = = = = = = = = = = = = = = = = = = = = =
     TODO メモ(見やすくするためにTODO機能を利用)
         ファイル概要:管理者用フォームの遷移を管理
@@ -31,29 +32,53 @@ public class AdminMoveController {
 
 
 
-    @GetMapping("times")
+    @GetMapping("adm_times")
     public String displayTimes(Model model) {
 
-        return "adm_display_time";
+        return "adm_display_times";
     }
 
-    @PostMapping("sel_time")
+    @PostMapping("adm_sel_time")
     public String selectDisplayTimes(Model model) {
-        return "adm_select_disp_times";
+        return "adm_select_display_times";
     }
 
-    @GetMapping("user_add")
+    @GetMapping("adm_user_add")
     public String userAdd(Model model) {
         return "adm_user_add";
     }
 
-    @PostMapping("user_edit")
-    public String userEdit(Model model){
+    @RequestMapping(value="/edit" ,method = RequestMethod.POST)
+    public String userEdit(@RequestParam("userId") int id, Model model){
+
+        List<Map<String, Object>> users = new ArrayList<>();
+        users = userService.getUserById(id);
+
+        model.addAttribute("name",users.get(0).get("name"));
+        model.addAttribute("beforeId",id);
+        model.addAttribute("afterId",id);
+        model.addAttribute("pass",users.get(0).get("password"));
+
+
         return "adm_user_edit";
     }
 
-    @GetMapping("user_list")
+
+@PostMapping("user_edit_check")
+    public String editCheck(@RequestParam("name") String name,@RequestParam("afterId") int afterId, @RequestParam("password")String pass,@RequestParam
+        ("beforeId")int beforeId,Model model){
+        int no = userService.getUserNo(beforeId);
+        System.out.println(no);
+        userService.updateUserEdit(no,name,afterId,pass);
+        model.addAttribute("users",userService.readUserList());
+        return "adm_userList";
+}
+
+    @GetMapping("adm_user_list")
     public String userList(Model model) {
+
+        System.out.println(userService.readUserList());
+        model.addAttribute("users",userService.readUserList());
         return "adm_userList";
     }
 

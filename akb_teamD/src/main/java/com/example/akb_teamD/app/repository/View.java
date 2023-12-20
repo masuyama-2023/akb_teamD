@@ -12,10 +12,10 @@ public interface View {
     List<Map<String, Object>> findUserList(); //(管理者)ユーザー一覧表示
     List<Map<String, Object>> findSelectTimes(); //(管理者)選択した人物の勤怠履歴を表示
     List<Map<String, Object>> findHistory(); //自分の1ヶ月単位の出退勤を確認
-
+    List<Map<String,Object>> getUserById(int id);
     String loginCheck(int id, String pass);
     String getRole(int id);
-
+    int getUserNo(int id);
 }
 
 

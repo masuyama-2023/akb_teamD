@@ -26,20 +26,30 @@
 
         </br></br></br></br>    
         <h1><p>連絡先登録</p></h1>
-        <form action= "/user_contact_address" method="POST">
+        <form action= "/user_contact_address" method="POST" name="register_form">
         <p class="position_center">
         電話番号<input type="text" name="phone" id="phone"
                        pattern="\d{1,5}-\d{1,4}-\d{4,5}" placeholder="000-0000-0000"></br>
         メールアドレス<input type="text" name="mail" id= "mail" placeholder="aaa@~.com"></br>
         備考<input type="text" name="remark" id= "remark" placeholder="備考を入力してください"></br>
-        <input type="submit" value="登録" id="button" >
+        <input type="submit" value="登録" id="button" onClick="return check();">
 
             <script>
-                const button1 = document.getElementById('button');
+                function check(){
+                    if (register_form.phone.value == ""){
+                        alert("電話番号を入力してください。");    //エラーメッセージを出力
+                        return false;    //送信ボタン本来の動作をキャンセルします
+                    }else if (register_form.mail.value == ""){
+                        alert("メールアドレスを入力してください。");    //エラーメッセージを出力
+                        return false;    //送信ボタン本来の動作をキャンセルします
+                    }else{
+                        //条件に一致しない場合
+                        alert('登録しました。');
+                        return true;    //送信ボタン本来の動作を実行します
+                    }
+                }
 
-                button1.addEventListener('click', () => {
-                alert('登録しました。');
-                });
+
             </script>
 
 

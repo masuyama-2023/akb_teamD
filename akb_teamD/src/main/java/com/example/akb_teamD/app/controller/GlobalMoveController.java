@@ -206,19 +206,7 @@ public class GlobalMoveController
 
     /*-------多分ここからが自分（益山）の担当だと思う-------------*/
 
-/*
-    @Value("${spring.datasource.url}")
-    private static String database_test;
-    @Component
-    public static class DatabaseProperties {
 
-
-        public static String getDatabase() {
-            System.out.println(database_test);
-            return database_test;
-        }
-    }
-    */
 @Component
 public class DatabaseProperties {
     private static String database;  // 静的なフィールド
@@ -268,15 +256,12 @@ public class DatabaseProperties {
     }
 
     @GetMapping ("/user_contact_address")
-    public String address_get(){
-        return "user_contact_address";
-    }
+    public String address_get(){return "user_contact_address";}
     @PostMapping("/user_contact_address")
     public String address(HttpServletRequest request,
                           @RequestParam(name = "phone", required = false) String phone,
                           @RequestParam(name = "mail", required = false) String mail,
-                          @RequestParam(name = "remark", required = false) String remark,
-                          Model model) throws SQLException {
+                          @RequestParam(name = "remark", required = false) String remark) throws SQLException {
 
         // 取得した内容をコンソールに表示
         String DatabaseName = DatabaseProperties.getDatabase();
@@ -284,38 +269,41 @@ public class DatabaseProperties {
         String username = DatabaseProperties.getUsername();
         String password = DatabaseProperties.getPassword();
 
-        String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
-        String sql2 = "UPDATE address_table SET id = ?,name = ?,phone = ?,mail = ?,other = ?  WHERE id = ?";
-        String sql3 = "SELECT name FROM address_table WHERE id = " +(int) session.getAttribute("id") ;
-        try (Connection conn = DriverManager.getConnection(url, username, password)){
+
+        if (session.getAttribute("id") != null) {
+
+            String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
+            String sql2 = "UPDATE address_table SET id = ?,name = ?,phone = ?,mail = ?,other = ?  WHERE id = ?";
+            String sql3 = "SELECT name FROM address_table WHERE id = " + (int) session.getAttribute("id");
+            try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
 
-            List<Map<String, Object>> list = new ArrayList<>();
-            list = jdbcTemplate.queryForList(sql3);
-            if(list == null || list.size() == 0) {
+                List<Map<String, Object>> list = new ArrayList<>();
+                list = jdbcTemplate.queryForList(sql3);
+                if (list == null || list.size() == 0) {
 
-                try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                    pstmt.setInt(1, (int) session.getAttribute("id"));
-                    pstmt.setString(2, (String) session.getAttribute("name"));
-                    pstmt.setString(3, phone);
-                    pstmt.setString(4, mail);
-                    pstmt.setString(5, remark);
-                    pstmt.executeUpdate();
+                    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                        pstmt.setInt(1, (int) session.getAttribute("id"));
+                        pstmt.setString(2, (String) session.getAttribute("name"));
+                        pstmt.setString(3, phone);
+                        pstmt.setString(4, mail);
+                        pstmt.setString(5, remark);
+                        pstmt.executeUpdate();
 
-                }
-            }else{
-                try (PreparedStatement pstmt = conn.prepareStatement(sql2)) {
-                    pstmt.setInt(1, (int) session.getAttribute("id"));
-                    pstmt.setString(2, (String) session.getAttribute("name"));
-                    pstmt.setString(3, phone);
-                    pstmt.setString(4, mail);
-                    pstmt.setString(5, remark);
-                    pstmt.setInt(6, (int) session.getAttribute("id"));
-                    pstmt.executeUpdate();
+                    }
+                } else {
+                    try (PreparedStatement pstmt = conn.prepareStatement(sql2)) {
+                        pstmt.setInt(1, (int) session.getAttribute("id"));
+                        pstmt.setString(2, (String) session.getAttribute("name"));
+                        pstmt.setString(3, phone);
+                        pstmt.setString(4, mail);
+                        pstmt.setString(5, remark);
+                        pstmt.setInt(6, (int) session.getAttribute("id"));
+                        pstmt.executeUpdate();
+                    }
                 }
             }
         }
-        System.out.println("return直前");
         return "user_contact_address";
 
     }

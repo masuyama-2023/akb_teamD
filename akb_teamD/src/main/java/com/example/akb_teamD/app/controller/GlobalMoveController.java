@@ -293,14 +293,6 @@ public class GlobalMoveController
         return "adm_select_disp_times";
     }
     ////////////////////////////
-    @GetMapping("/user_place")
-    public String place(Model model) {
-        
-
-    @GetMapping("/user_place")
-    public String place(Model model) {
-        return "user_place";
-    }
 
 
 

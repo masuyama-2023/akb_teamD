@@ -1,59 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        
-        <!--css導入リンク-->
-        <link href="css/design.css" rel="stylesheet" type="text/css">
-        <link href="css/global.css" rel="stylesheet" type="text/css">
+<head>
+    <meta charset="utf-8">
+    <title>勤務時間集計一覧</title>
 
-    </head>
+    <!--css導入リンク-->
+    <link href="css/design.css" rel="stylesheet" type="text/css">
+    <link href="css/global.css" rel="stylesheet" type="text/css">
 
-    <body>
-        <trans class="translate">
-            <li><a href="adm_userList" >ユーザー管理</a></li>
-            <li><a href="#" >勤務場所管理</a></li>
-            <li><a href="adm_display_times" >勤怠時間集計</a></li>
-            <li><a href="logout_check" >ログアウトぉ</a></li>
-         </trans>
- 
-        </br></br></br>
-        <h1 class="center">勤務時間集計一覧　　　　　2023年10月</h1></br>
+</head>
 
+<body>
+<trans class="translate">
+    <li><a href="adm_userList" >ユーザー管理</a></li>
+    <li><a href="#" >勤務場所管理</a></li>
+    <li><a href="adm_display_times" >勤怠時間集計</a></li>
+    <li><a href="logout_check" >ログアウトぉ</a></li>
+</trans>
 
-        <p>
-            <input type="submit" class="btn-square-shadow" value="前月へ"  id="back"></input>
-            <input type="submit" class="btn-square-shadow" value="次月へ"  id="next"></input>
-        </p>
+</br></br></br>
+<h1><p th:text="|勤務時間集計一覧 ${fromJV_month} |"></p></h1></br>
+<table id="table_center" border="1" width="1000" >
 
-        <table id="table_center" border="1" width="1000" >
-            <tr>
-                <th>名前</th>
-                <th>勤務時間</th>
-            </tr>
-            <tr class="record_center">
-                <td><a href="adm_select_disp_times.html">山田太郎</a></td>
-                <td>50:00</td>
-            </tr>
-            <tr class="record_center">
-                <td><a href="adm_select_disp_times.html">名無し1</a></td>
-                <td>55:00</td>
-            </tr>
-            <tr class="record_center">
-                <td><a href="adm_select_disp_times.html">名無し2</a></td>
-                <td>85:00</td>
-            </tr>
-            <tr class="record_center">
-                <td><a href="adm_select_disp_times.html">名無し3</a></td>
-                <td>25:00</td>
-            </tr>
-            
+    <p>
+    <form method="post" action="/adm_display_times">
+        <select class="place" name="place">
+            <option value="'f'" text=""></option>
+            <option th:each="usersList : ${fromJV_user}" th:value="${usersList['id']}"
+                    th:text="${usersList['name']}"></option>
+        </select>
 
-         </table>
+        <input type="submit" value="検索" id="button" name="action"></input></br></br>
+
+        <input type="submit" class="btn-square-shadow" value="前月へ"  id="back" name="action"></input>
+        <input type="submit" class="btn-square-shadow" value="次月へ"  id="next" name="action"></input>
+    </form>
+    </p>
+
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>勤務時間</th>
+    </tr>
+    <tr th:each="attendance : ${fromJV_sel}">
+        <td th:text="${attendance['id']}"></td>
+        <td th:text="${attendance['name']}"></td>
+        <td th:text="${attendance['working_sum']}"></td>
+    </tr>
+</table>
 
 
-        
-    </body>
+</body>
 
 </html>

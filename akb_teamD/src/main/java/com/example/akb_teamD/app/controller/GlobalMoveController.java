@@ -204,9 +204,6 @@ public class GlobalMoveController
 
 
 
-    /*-------多分ここからが自分（益山）の担当だと思う-------------*/
-
-
 @Component
 public class DatabaseProperties {
     private static String database;  // 静的なフィールド

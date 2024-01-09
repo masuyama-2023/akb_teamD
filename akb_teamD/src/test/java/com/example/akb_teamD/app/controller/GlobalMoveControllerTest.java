@@ -30,9 +30,13 @@ class GlobalMoveControllerTest {
 
     @Test
     void address() throws Exception{
-        mockMvc.perform(get("/user_contact_address"))
+        mockMvc.perform(post("/user_contact_address"))
                 .andExpect(status().is(200))
-                .andExpect(content().string(containsString("出勤")))
-                .andExpect(content().string(not(containsString("出勤出勤"))));
+                .andExpect(content().string(containsString("連絡先登録")))
+                .andExpect(content().string(containsString("登録")))
+                .andExpect(content().string(containsString("電話番号")))
+                .andExpect(content().string(containsString("メールアドレス")))
+                .andExpect(content().string(containsString("備考")))
+                .andExpect(content().string(not(containsString("出勤"))));
     }
 }

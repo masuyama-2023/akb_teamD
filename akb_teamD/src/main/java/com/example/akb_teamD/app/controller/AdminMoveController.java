@@ -74,6 +74,7 @@ public class AdminMoveController {
         return "adm_userList";
 }
 
+
     @GetMapping("adm_user_list")
     public String userList(Model model) {
 

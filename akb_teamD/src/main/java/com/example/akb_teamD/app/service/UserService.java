@@ -4,11 +4,9 @@ import com.example.akb_teamD.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-=======
 import java.sql.SQLException;
 import java.util.Date;
->>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
+
 import java.util.List;
 import java.util.Map;
 
@@ -56,13 +54,11 @@ public class UserService {
         getUserRepository().place();
     }
 
-<<<<<<< HEAD
+
     public void updateUserEdit( int no,String name,int id,String pass){
         getUserRepository().userEdit(no, name,id,pass);
     }
-=======
-    public void updateUserEdit()  {getUserRepository().userEdit();}
->>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
+
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   DELETE文                              *
@@ -105,10 +101,6 @@ public class UserService {
         return getUserRepository().loginCheck(id,pass);
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
     public String getRole(int id){
         return getUserRepository().getRole(id);
     }
@@ -120,11 +112,6 @@ public class UserService {
 
 
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
     public UserRepository getUserRepository(){
         return userRepository;
     }

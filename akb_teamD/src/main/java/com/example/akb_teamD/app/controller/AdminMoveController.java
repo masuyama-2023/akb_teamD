@@ -1,8 +1,11 @@
 package com.example.akb_teamD.app.controller;
 
+
+import com.example.akb_teamD.app.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,32 +20,48 @@ import org.springframework.web.bind.annotation.PostMapping;
   = = = = = = = = = = = = = = = = = = = = = =*/
 @Controller
 public class AdminMoveController {
+
+    private HttpSession session;
+    private UserService userService;
+    @Autowired
+    public AdminMoveController(HttpSession session, UserService userService){
+        this.session = session;
+        this.userService = userService;
+    }
+
+
+
     @GetMapping("times")
     public String displayTimes(Model model) {
 
-        return "adm_display_times";
+        return "adm_display_time";
     }
 
     @PostMapping("sel_time")
-    public String selectDisplayTimes() {
+    public String selectDisplayTimes(Model model) {
         return "adm_select_disp_times";
     }
 
     @GetMapping("user_add")
-    public String userAdd() {
+    public String userAdd(Model model) {
         return "adm_user_add";
     }
 
     @PostMapping("user_edit")
-    public String userEdit(){
+    public String userEdit(Model model){
         return "adm_user_edit";
     }
 
     @GetMapping("user_list")
-    public String userList() {
+    public String userList(Model model) {
         return "adm_userList";
     }
 
-
+    public UserService getUserService(){
+        return userService;
+    }
 
 }
+
+
+

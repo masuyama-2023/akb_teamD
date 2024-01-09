@@ -2,10 +2,17 @@ package com.example.akb_teamD.app.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
 import java.util.List;
 import java.util.Map;
 
@@ -43,9 +50,13 @@ public class UserRepository  implements Insert, Delete, View, Update{
     }
 
     @Override
-    public void address() {
+    public void address(String phone, String mail, String remark) {
+        getJdbcTemplate().update(
+                "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa',"+phone+","+mail+","+remark+")");
+
 
     }
+
 
     @Override
     public void adm_add() {
@@ -86,10 +97,16 @@ public class UserRepository  implements Insert, Delete, View, Update{
     }
 
     @Override
+<<<<<<< HEAD
     public void userEdit(int no, String name, int id,String pass) {
         sql = "UPDATE users_table SET id = "+ id +", name = '"+ name +"',password = '"+ pass +"' WHERE no = " + no;
         jdbcTemplate.update(sql);
+=======
+    public void userEdit()  {
+
+>>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
     }
+
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   SELECT文                              *

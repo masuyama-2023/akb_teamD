@@ -65,8 +65,8 @@ public class InputsController {
     @PostMapping("/user_attendanceList")
     public String PlaceInput(@RequestParam("place") String place, Model model, HttpSession session){
 
-        System.out.println("勤務地" + place);
-        System.out.println(session.getAttribute("id"));
+//        System.out.println("勤務地" + place);
+//        System.out.println(session.getAttribute("id"));
 
         String sql = "UPDATE attendances_table SET place = ? WHERE id = ?";
         jdbcTemplate.update(sql, place, (int)session.getAttribute("id"));

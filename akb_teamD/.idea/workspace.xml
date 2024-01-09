@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="96dbce5c-906b-49c9-8c30-20594a778f08" name="変更" comment="">
+=======
     <list default="true" id="96dbce5c-906b-49c9-8c30-20594a778f08" name="変更" comment="imai">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" afterDir="false" />
@@ -19,18 +23,24 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+<<<<<<< HEAD
+=======
         <option value="HTML File" />
+>>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+<<<<<<< HEAD
+=======
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$/.." value="imai" />
         <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
+>>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -48,6 +58,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/tubak/My_file/授業作成物/共同開発_後期_勤怠システム/SpringBoot/AttandanceManage/AttandanceManage",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
@@ -77,6 +96,7 @@
       </list>
     </recent_temporary>
   </component>
+>>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="アプリケーションレベル" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="デフォルトタスク">
@@ -86,6 +106,10 @@
       <option name="presentableId" value="Default" />
       <updated>1700546886967</updated>
     </task>
+<<<<<<< HEAD
+    <servers />
+  </component>
+=======
     <task id="LOCAL-00001" summary="ログイン機能完成">
       <created>1701404364816</created>
       <option name="number" value="00001" />
@@ -192,4 +216,5 @@
       <FILTER>com.example.akb_teamD.app.*</FILTER>
     </SUITE>
   </component>
+>>>>>>> 8995833084cae87426a20fc67cf1fb3fea2a9cc4
 </project>

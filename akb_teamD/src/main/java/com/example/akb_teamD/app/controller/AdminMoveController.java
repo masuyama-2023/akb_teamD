@@ -49,6 +49,7 @@ public class AdminMoveController {
 
     @PostMapping("user_edit")
     public String userEdit(Model model){
+        System.out.println("Hello");
         return "adm_user_edit";
     }
 

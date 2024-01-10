@@ -1,9 +1,12 @@
 package com.example.akb_teamD.app.repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +32,8 @@ public class UserRepository  implements Create, Delete, View, Update{
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
     //TODO 各メソッドにSQL処理の記述
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
@@ -36,9 +41,10 @@ public class UserRepository  implements Create, Delete, View, Update{
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     @Override
-    public void workStart(int id, String name, String time) {
-        getJdbcTemplate().update(
-         "INSERT INTO attendances_table (id,name,date,begin_time,status,place) VALUES(" + id + ",'"+ name +"','2023-11-27','" + time + "','出勤中','登録予定') ");
+    public void workStart(int id, String name, LocalTime time, LocalDate date) {
+        sql = "INSERT INTO attendances_table(id,name,date,begin_time,status,place) VALUES(?,?,?,?,'勤務中','登録予定')";
+        time = LocalTime.parse(time.format(timeFormatter));
+        jdbcTemplate.update(sql,id,name,date,time);
     }
 
     @Override
@@ -53,6 +59,7 @@ public class UserRepository  implements Create, Delete, View, Update{
     public void adm_add() {
 
     }
+
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   DELETE文                              *
@@ -83,8 +90,9 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void place() {
-
+    public void place(int id, String place, LocalDate date) {
+        sql = "UPDATE attendances_table SET place = ? WHERE id = ? AND date = ?";
+        jdbcTemplate.update(sql,place,id,date);
     }
 
     @Override
@@ -153,10 +161,10 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     @Override
     public String getRole(int id) {
-        sql = "SELECT role FROM users_table WHERE id = ?";
+        sql = "SELECT role FROM users_table WHERE id = "+ id;
 
         List<Map<String, Object>> list = new ArrayList<>();
-        list = jdbcTemplate.queryForList(sql,id);
+        list = jdbcTemplate.queryForList(sql);
         if(list == null || list.size() == 0){
             return "No Role";
         }

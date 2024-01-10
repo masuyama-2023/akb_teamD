@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +23,8 @@ public class UserService {
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   INSERT文                              *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-    public void insertWorkStart(int id,String name,String time){
-        getUserRepository().workStart(id,name,time);
+    public void insertWorkStart(int id, String name, LocalTime time , LocalDate date){
+        getUserRepository().workStart(id,name,time,date);
     }
 
     public void insertAddress(int id, String name,String phone,String mail,String remark){
@@ -49,8 +51,8 @@ public class UserService {
         getUserRepository().WorkEnd();
     }
 
-    public void updatePlace() {
-        getUserRepository().place();
+    public void place(int id,String place,LocalDate date) {
+        getUserRepository().place(id, place, date);
     }
 
     public void updateAddress(int id,String name,String phone,String mail,String remark){

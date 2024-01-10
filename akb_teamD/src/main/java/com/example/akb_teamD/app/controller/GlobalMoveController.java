@@ -69,6 +69,11 @@ public class GlobalMoveController
         return "user_attendanceList";
     }
 
+    @GetMapping("/user_place")
+    public String viewPlace(Model model){
+        return "user_place";
+    }
+
       /////勤怠履歴///////
     //TODO ログインしているユーザーの情報から勤怠履歴を取得
     private static String past_month = null;
@@ -304,7 +309,7 @@ public class GlobalMoveController
                           @RequestParam(name = "mail", required = false) String mail,
                           @RequestParam(name = "remark", required = false) String remark) throws SQLException {
 
-        // 取得した内容をコンソールに表示
+        // 取得した内容をコンソールに表示(改変前（益山）)
         //String DatabaseName = DatabaseProperties.getDatabase();
         //String url = DatabaseProperties.getUrl();
         //String username = DatabaseProperties.getUsername();

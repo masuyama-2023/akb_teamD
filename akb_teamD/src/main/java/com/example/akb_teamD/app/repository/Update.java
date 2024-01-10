@@ -11,4 +11,5 @@ public interface Update {
 
     void userEdit() ; //ユーザー編集
 
+    void updateAddress(int id, String name,String phone, String mail,String remark);
 }

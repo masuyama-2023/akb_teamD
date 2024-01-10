@@ -1,7 +1,6 @@
 package com.example.akb_teamD.app.controller;
 import com.example.akb_teamD.app.service.UserService;
 
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -43,8 +42,6 @@ import java.util.Map;
   = = = = = = = = = = = = = = = = = = = = = =*/
 
 @ConfigurationProperties(prefix = "spring.datasource")
-@Component
-@Data
 @Controller
 public class GlobalMoveController
 {
@@ -57,7 +54,7 @@ public class GlobalMoveController
     }
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    private com.example.akb_teamD.app.repository.UserRepository UserRepository;
+    //private com.example.akb_teamD.app.repository.UserRepository UserRepository;
 
 
     @GetMapping("/")
@@ -227,7 +224,7 @@ public class GlobalMoveController
     ////////////////////////////
     ///運営用、選択した人の勤務時間集計一覧////
     @GetMapping("/adm_select_disp_times")
-    public String adm_slect(Model model) {
+    public String adm_select(Model model) {
         //今日の日付を取得
         LocalDate currentDate = LocalDate.now();
         //今日の日にちを取得
@@ -262,7 +259,7 @@ public class GlobalMoveController
         return "adm_select_disp_times";
     }
     @PostMapping("/adm_select_disp_times")
-    public String adm_slect_click(HttpServletRequest request, Model model,
+    public String adm_select_click(HttpServletRequest request, Model model,
                                     @RequestParam("place") String selectedPlace) {
         String search = selectedPlace;
         // ボタンがクリックされたかどうかを判定
@@ -299,54 +296,6 @@ public class GlobalMoveController
     /*-------多分ここからが自分（益山）の担当だと思う-------------*/
 
 
-@Component
-public class DatabaseProperties {
-    private static String database;  // 静的なフィールド
-    public static String url;
-    public static String username;
-    public static String password;
-    @Value("${spring.jpa.database}")
-    public void setDatabase(String database) {
-        DatabaseProperties.database = database;
-    }
-    @Value("${spring.datasource.url}")
-    public void setDatabaseUrl(String url) {
-        DatabaseProperties.url = url;
-    }
-    @Value("${spring.datasource.username}")
-    public void setDatabaseUsername(String username) {
-        DatabaseProperties.username = username;
-    }
-    @Value("${spring.datasource.password}")
-    public void setDatabasePassword(String password) {
-        DatabaseProperties.password = password;
-    }
-
-    public static String getDatabase() {
-        return database;
-    }
-    public static String getUrl() {
-        return url;
-    }
-    public static String getUsername() {
-        return username;
-    }
-    public static String getPassword() {
-        return password;
-    }
-}
-
-    @Service
-    public static class DemoGetDataSource {
-
-        private final DatabaseProperties databaseProperties;
-
-        @Autowired
-        public DemoGetDataSource(DatabaseProperties databaseProperties) {
-            this.databaseProperties = databaseProperties;
-        }
-    }
-
     @GetMapping ("/user_contact_address")
     public String address_get(){return "user_contact_address";}
     @PostMapping("/user_contact_address")
@@ -356,44 +305,26 @@ public class DatabaseProperties {
                           @RequestParam(name = "remark", required = false) String remark) throws SQLException {
 
         // 取得した内容をコンソールに表示
-        String DatabaseName = DatabaseProperties.getDatabase();
-        String url = DatabaseProperties.getUrl();
-        String username = DatabaseProperties.getUsername();
-        String password = DatabaseProperties.getPassword();
+        //String DatabaseName = DatabaseProperties.getDatabase();
+        //String url = DatabaseProperties.getUrl();
+        //String username = DatabaseProperties.getUsername();
+       // String password = DatabaseProperties.getPassword();
 
 
         if (session.getAttribute("id") != null) {
 
-            String sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
-            String sql2 = "UPDATE address_table SET id = ?,name = ?,phone = ?,mail = ?,other = ?  WHERE id = ?";
-            String sql3 = "SELECT name FROM address_table WHERE id = " + (int) session.getAttribute("id");
-            try (Connection conn = DriverManager.getConnection(url, username, password)) {
-
-
                 List<Map<String, Object>> list = new ArrayList<>();
-                list = jdbcTemplate.queryForList(sql3);
+                list = userService.findRecord((int)session.getAttribute("id"));
+
+                int id = (int)session.getAttribute("id");
+                String name = (String)session.getAttribute("name");
+
+                //レコードがなければ新規追加、そうでなければ更新
                 if (list == null || list.size() == 0) {
-
-                    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                        pstmt.setInt(1, (int) session.getAttribute("id"));
-                        pstmt.setString(2, (String) session.getAttribute("name"));
-                        pstmt.setString(3, phone);
-                        pstmt.setString(4, mail);
-                        pstmt.setString(5, remark);
-                        pstmt.executeUpdate();
-
-                    }
+                    getUserService().insertAddress(id,name,phone,mail,remark);
                 } else {
-                    try (PreparedStatement pstmt = conn.prepareStatement(sql2)) {
-                        pstmt.setInt(1, (int) session.getAttribute("id"));
-                        pstmt.setString(2, (String) session.getAttribute("name"));
-                        pstmt.setString(3, phone);
-                        pstmt.setString(4, mail);
-                        pstmt.setString(5, remark);
-                        pstmt.setInt(6, (int) session.getAttribute("id"));
-                        pstmt.executeUpdate();
-                    }
-                }
+                    System.out.println("update");
+                    getUserService().updateAddress(id,name,phone,mail,remark);
             }
         }
         return "user_contact_address";

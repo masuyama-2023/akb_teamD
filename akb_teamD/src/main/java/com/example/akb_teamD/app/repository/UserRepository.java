@@ -42,10 +42,9 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void address(String phone, String mail, String remark) {
-        getJdbcTemplate().update(
-                "INSERT INTO address_table (id,name,phone,mail,other) VALUES(1,'aaa',"+phone+","+mail+","+remark+")");
-
+    public void address(int id, String name, String phone, String mail, String remark) {
+        sql = "INSERT INTO address_table (id,name,phone,mail,other) VALUES(?,?,?,?,?)";
+        getJdbcTemplate().update(sql,id,name,phone,mail,remark);
 
     }
 
@@ -93,6 +92,12 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     }
 
+    @Override
+    public void updateAddress(int id,String name,String phone,String mail, String remark){
+        sql = "UPDATE address_table SET id = ?,name = ?,phone = ?,mail = ?,other = ?  WHERE id = ?";
+        jdbcTemplate.update(sql,id,name,phone,mail,remark,id);
+    }
+
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   SELECT文                              *
@@ -134,8 +139,8 @@ public class UserRepository  implements Create, Delete, View, Update{
     @Override
     public String loginCheck(int id, String pass) {
         List<Map<String, Object>> list = new ArrayList<>();
-        sql = "SELECT name FROM users_table WHERE id = " + id + "AND password = '" + pass +"'";
-        list = jdbcTemplate.queryForList(sql);
+        sql = "SELECT name FROM users_table WHERE id = ?AND password = ?";
+        list = jdbcTemplate.queryForList(sql, id,pass);
         if(list == null || list.size() == 0){
             return "No Name";
         }
@@ -148,15 +153,21 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     @Override
     public String getRole(int id) {
-        sql = "SELECT role FROM users_table WHERE id = " + id;
+        sql = "SELECT role FROM users_table WHERE id = ?";
 
         List<Map<String, Object>> list = new ArrayList<>();
-        list = jdbcTemplate.queryForList(sql);
+        list = jdbcTemplate.queryForList(sql,id);
         if(list == null || list.size() == 0){
             return "No Role";
         }
 
         return (String) jdbcTemplate.queryForList(sql).get(0).get("role");
+    }
+
+    public List<Map<String, Object>> findRecord(int id){
+        sql = "SELECT name FROM address_table WHERE id = ?";
+
+        return jdbcTemplate.queryForList(sql,id);
     }
 
     public JdbcTemplate getJdbcTemplate(){

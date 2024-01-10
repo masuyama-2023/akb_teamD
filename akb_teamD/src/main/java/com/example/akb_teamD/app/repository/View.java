@@ -15,6 +15,7 @@ public interface View {
 
     String loginCheck(int id, String pass);
     String getRole(int id);
+    List<Map<String, Object>> findRecord(int id);
 
 }
 

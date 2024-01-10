@@ -258,14 +258,15 @@ public class DatabaseProperties {
     public String address(HttpServletRequest request,
                           @RequestParam(name = "phone", required = false) String phone,
                           @RequestParam(name = "mail", required = false) String mail,
-                          @RequestParam(name = "remark", required = false) String remark) throws SQLException {
+                          @RequestParam(name = "remark", required = false) String remark,
+                          Model model) throws SQLException {
 
         // 取得した内容をコンソールに表示
         String DatabaseName = DatabaseProperties.getDatabase();
         String url = DatabaseProperties.getUrl();
         String username = DatabaseProperties.getUsername();
         String password = DatabaseProperties.getPassword();
-
+        model.addAttribute("id2",session.getAttribute("id"));
 
         if (session.getAttribute("id") != null) {
 

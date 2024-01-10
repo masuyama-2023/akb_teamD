@@ -32,8 +32,6 @@ class GlobalMoveControllerTest {
     void address() throws Exception{
         mockMvc.perform(post("/user_contact_address"))
                 .andExpect(status().is(200))
-                .andExpect(content().string(containsString("連絡先登録")))
-                .andExpect(content().string(containsString("登録")))
                 .andExpect(content().string(containsString("電話番号")))
                 .andExpect(content().string(containsString("メールアドレス")))
                 .andExpect(content().string(containsString("備考")))

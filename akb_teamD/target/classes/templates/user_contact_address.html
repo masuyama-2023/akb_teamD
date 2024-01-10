@@ -27,6 +27,7 @@
         </br></br></br></br>    
         <h1><p>連絡先登録</p></h1>
         <form action= "/user_contact_address" method="POST" name="register_form">
+            <p3 hidden name="user" th:text="${id2}" ></p3>
         <p class="position_center">
         電話番号<input type="text" name="phone" id="phone"
                        pattern="\d{1,5}-\d{1,4}-\d{4,5}" placeholder="000-0000-0000"></br>
@@ -36,7 +37,10 @@
 
             <script>
                 function check(){
-                    if (register_form.phone.value == ""){
+                    if (user.value ==""){
+                        alert("ログインしてください。");
+                        return false;
+                    }else if (register_form.phone.value == ""){
                         alert("電話番号を入力してください。");    //エラーメッセージを出力
                         return false;    //送信ボタン本来の動作をキャンセルします
                     }else if (register_form.mail.value == ""){

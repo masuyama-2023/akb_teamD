@@ -39,8 +39,8 @@ public class UserService {
      *                                   UPDATE文                              *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    public void updateBreakStart(){
-        getUserRepository().breakStart();
+    public void updateBreakStart(int id, LocalDate date, LocalTime time){
+        getUserRepository().breakStart(id, date, time);
     }
 
     public void updateBreakEnd(){

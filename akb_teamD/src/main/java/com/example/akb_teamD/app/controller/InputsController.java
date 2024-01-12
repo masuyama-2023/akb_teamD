@@ -78,6 +78,11 @@ public class InputsController {
     }
     @GetMapping("/breakIn")
     public String breakIn(Model model) {
+
+        int id = (int)session.getAttribute("id");
+        userService.updateBreakStart(id, getDate(), getTime());
+
+
         return "user_attendanceList";
     }
     @GetMapping("/breakOut")

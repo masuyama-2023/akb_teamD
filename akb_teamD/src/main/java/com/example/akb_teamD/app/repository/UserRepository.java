@@ -75,7 +75,11 @@ public class UserRepository  implements Create, Delete, View, Update{
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     @Override
-    public void breakStart() {
+    public void breakStart(int id, LocalDate date, LocalTime time) {
+
+        time = LocalTime.parse(time.format(timeFormatter));
+        sql = "UPDATE attendances_table SET break_begin = ?,status = '休憩中' WHERE id = ? AND date = ?";
+        jdbcTemplate.update(sql,time,id,date);
 
     }
 

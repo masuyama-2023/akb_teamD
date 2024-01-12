@@ -84,12 +84,20 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void breakEnd() {
+    public void breakEnd(int id, LocalDate date, LocalTime time) {
+
+        time = LocalTime.parse(time.format(timeFormatter));
+        sql = "UPDATE attendances_table SET break_end = ?,status = '勤務中' WHERE id = ? AND time = ?";
+        jdbcTemplate.update(sql,time,id,date);
 
     }
 
     @Override
-    public void WorkEnd() {
+    public void WorkEnd(int id, LocalDate date, LocalTime time) {
+
+        time = LocalTime.parse(time.format(timeFormatter));
+        sql = "UPDATE attendances_table SET work_end = ?,status = '退勤済' WHERE id = ? AND date = ?";
+        jdbcTemplate.update(sql,time,id,date);
 
     }
 

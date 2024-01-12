@@ -43,12 +43,12 @@ public class UserService {
         getUserRepository().breakStart(id, date, time);
     }
 
-    public void updateBreakEnd(){
-        getUserRepository().breakEnd();
+    public void updateBreakEnd(int id, LocalDate date, LocalTime time){
+        getUserRepository().breakEnd(id, date, time);
     }
 
-    public void updateWorkEnd() {
-        getUserRepository().WorkEnd();
+    public void updateWorkEnd(int id, LocalDate date, LocalTime time) {
+        getUserRepository().WorkEnd(id, date, time);
     }
 
     public void place(int id,String place,LocalDate date) {

@@ -74,20 +74,27 @@ public class InputsController {
     }
     @GetMapping("/workOut")
     public String workOut(Model model) {
+
+        int id = (int)session.getAttribute("id");
+        userService.updateWorkEnd(id, getDate(), getTime());
         return "user_attendanceList";
+
     }
     @GetMapping("/breakIn")
     public String breakIn(Model model) {
 
         int id = (int)session.getAttribute("id");
         userService.updateBreakStart(id, getDate(), getTime());
-
-
         return "user_attendanceList";
+
     }
     @GetMapping("/breakOut")
     public String breakOut(Model model) {
+
+        int id = (int)session.getAttribute("id");
+        userService.updateBreakEnd(id, getDate(), getTime());
         return "user_attendanceList";
+
     }
 
     public UserService getUserService(){

@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /* = = = = = = = = = = = = = = = = = = = = = =
     TODO メモ(見やすくするためにTODO機能を利用)
@@ -41,12 +40,10 @@ public class InputsController {
 
 
     public String getTime() {
-        Date today = new Date();
+        Date nowtime = new Date();
         //System.out.println(new SimpleDateFormat("hh:mm:ss").format(today));
-        return new SimpleDateFormat("HH:mm:ss").format(today);
-
+        return new SimpleDateFormat("HH:mm:ss").format(nowtime);
     }
-
 
 
     //出勤退勤ボタン
@@ -65,11 +62,15 @@ public class InputsController {
     @PostMapping("/user_attendanceList")
     public String PlaceInput(@RequestParam("place") String place, Model model, HttpSession session){
 
-//        System.out.println("勤務地" + place);
-//        System.out.println(session.getAttribute("id"));
+//        Date daydate = new Date();
+//        SimpleDateFormat data = new SimpleDateFormat("YYYY-MM-DD");
+//        System.out.println("aaa" + data.format(daydate));
 
-        String sql = "UPDATE attendances_table SET place = ? WHERE id = ?";
-        jdbcTemplate.update(sql, place, (int)session.getAttribute("id"));
+        LocalDate days = LocalDate.now();
+
+
+        String sql = "UPDATE attendances_table SET place = ? WHERE id = ? and date = ?";
+        jdbcTemplate.update(sql, place, (int)session.getAttribute("id"), days);
 
         return "user_attendanceList";
 

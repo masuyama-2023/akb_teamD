@@ -58,6 +58,8 @@ public class InputsController {
 
         int id = (int)session.getAttribute("id");
         getUserService().place(id,place,getDate());
+
+        model.addAttribute("attendList",getUserService().readAttendance(getDate()));
         return "user_attendanceList";
     }
 

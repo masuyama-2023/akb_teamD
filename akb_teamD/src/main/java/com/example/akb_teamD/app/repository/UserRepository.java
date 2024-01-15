@@ -129,7 +129,8 @@ public class UserRepository  implements Create, Delete, View, Update{
                 "FROM attendances_table\n" +
                 "INNER JOIN address_table\n" +
                 "ON attendances_table.id = address_table.id\n" +
-                "WHERE date = ?";
+                "WHERE date = ?\n" +
+                "ORDER BY id ASC";
         return jdbcTemplate.queryForList(sql, date);
     }
 

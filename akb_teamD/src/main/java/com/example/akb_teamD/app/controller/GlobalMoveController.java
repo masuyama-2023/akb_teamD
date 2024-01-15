@@ -65,7 +65,11 @@ public class GlobalMoveController
         return "global_login";
     }
 
+@GetMapping("/user_diligence")
+public String diligence(Model model){
 
+        return "user_diligence";
+}
     @GetMapping("/user_attendanceList")
     public String view_attendance(Model model) {
         model.addAttribute("attendList",getUserService().readAttendance(getInputs().getDate()));

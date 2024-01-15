@@ -60,6 +60,7 @@ public class InputsController {
         getUserService().place(id,place,getDate());
 
         model.addAttribute("attendList",getUserService().readAttendance(getDate()));
+        System.out.println(getUserService().readAttendance(getDate()));
         return "user_attendanceList";
     }
 

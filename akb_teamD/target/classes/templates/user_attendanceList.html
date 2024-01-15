@@ -62,7 +62,7 @@
 
          <table id="table_center" border="1" width="1000" >
             <tr>
-                <th>No.</th>
+                <th>ID</th>
                 <th>日付</th>
                 <th>氏名</th>
                 <th>勤務開始時間</th>
@@ -71,6 +71,8 @@
                 <th>勤務終了時間</th>
                 <th>ステータス</th>
                 <th>勤務場所</th>
+                <th>電話番号</th>
+                <th>メールアドレス</th>
             </tr>
 
             <tr th:each="attend : ${attendList}" th:object="${attend}">

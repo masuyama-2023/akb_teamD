@@ -29,12 +29,12 @@
         <h1><p>勤務場所登録</p></h1>
         <h2><p>本日の勤務場所を登録してください</p></h2>
 
-        <form th:action="@{/user_attendanceList}" method="post">
+        <form th:action="@{/setPlace}" method="post">
         <p>
         <select class="place" name="place">
-            <option value="Home">自宅</option>
-            <option value="Tokyo">東京本社</option>
-            <option value="Office">営業所</option>
+            <option value="自宅">自宅</option>
+            <option value="東京本社">東京本社</option>
+            <option value="営業所">営業所</option>
 
         </select>
         </p>

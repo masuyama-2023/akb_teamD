@@ -1,6 +1,6 @@
 package com.example.akb_teamD.app.controller;
 import com.example.akb_teamD.app.service.UserService;
-
+import com.example.akb_teamD.app.controller.InputsController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -47,10 +47,13 @@ public class GlobalMoveController
 {
     private HttpSession session;
     private UserService userService;
+
+    private InputsController inputController;
     @Autowired
-    public GlobalMoveController(HttpSession session, UserService userService){
+    public GlobalMoveController(HttpSession session, UserService userService, InputsController inputController){
         this.session = session;
         this.userService = userService;
+        this.inputController = inputController;
     }
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -65,7 +68,7 @@ public class GlobalMoveController
 
     @GetMapping("/user_attendanceList")
     public String view_attendance(Model model) {
-        model.addAttribute("attendList",getUserService().readAttendance());
+        model.addAttribute("attendList",getUserService().readAttendance(getInputs().getDate()));
         return "user_attendanceList";
     }
 
@@ -341,4 +344,9 @@ public class GlobalMoveController
         return userService;
     }
 
+    public InputsController getInputs(){
+        return inputController;
+    }
 }
+
+

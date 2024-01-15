@@ -75,8 +75,8 @@ public class UserService {
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     //当日の勤退者の一覧表示
-    public List<Map<String, Object>> readAttendance(){
-        return getUserRepository().findAttendance();
+    public List<Map<String, Object>> readAttendance(LocalDate date){
+        return getUserRepository().findAttendance(date);
     }
 
     public List<Map<String,Object>> readDisplayTimes(){

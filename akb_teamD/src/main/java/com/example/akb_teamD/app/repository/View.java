@@ -1,11 +1,12 @@
 package com.example.akb_teamD.app.repository;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public interface View {
-    List<Map<String, Object>> findAttendance(); //本日の出退勤者一覧
+    List<Map<String, Object>> findAttendance(LocalDate date); //本日の出退勤者一覧
 
 
     List<Map<String, Object>> findDisplayTimes(); //(管理者)ユーザーの合計出勤時刻の表示

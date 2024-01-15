@@ -124,9 +124,13 @@ public class UserRepository  implements Create, Delete, View, Update{
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     @Override
-    public List<Map<String, Object>> findAttendance() {
-        sql = "SELECT * FROM attendances_table";
-        return jdbcTemplate.queryForList(sql);
+    public List<Map<String, Object>> findAttendance(LocalDate date) {
+        sql = "SELECT attendances_table.id AS id,attendances_table.name AS name,date,begin_time,break_begin,break_end,end_time,status,place,mail,phone\n" +
+                "FROM attendances_table\n" +
+                "INNER JOIN address_table\n" +
+                "ON attendances_table.id = address_table.id\n" +
+                "WHERE date = ?";
+        return jdbcTemplate.queryForList(sql, date);
     }
 
     @Override

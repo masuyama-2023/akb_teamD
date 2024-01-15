@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -21,12 +23,12 @@ public class UserService {
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   INSERT文                              *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-    public void insertWorkStart(int id,String name,String time){
-        getUserRepository().workStart(id,name,time);
+    public void insertWorkStart(int id, String name, LocalTime time , LocalDate date){
+        getUserRepository().workStart(id,name,time,date);
     }
 
-    public void insertAddress(String phone,String mail,String remark){
-        getUserRepository().address(phone,mail,remark);
+    public void insertAddress(int id, String name,String phone,String mail,String remark){
+        getUserRepository().address(id,name,phone,mail,remark);
     }
 
     public void insertAdmAdd(){
@@ -37,22 +39,26 @@ public class UserService {
      *                                   UPDATE文                              *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    public void updateBreakStart(){
-        getUserRepository().breakStart();
+    public void updateBreakStart(int id, LocalDate date, LocalTime time){
+        getUserRepository().breakStart(id, date, time);
     }
 
-    public void updateBreakEnd(){
-        getUserRepository().breakEnd();
+    public void updateBreakEnd(int id, LocalDate date, LocalTime time){
+        getUserRepository().breakEnd(id, date, time);
     }
 
-    public void updateWorkEnd() {
-        getUserRepository().WorkEnd();
+    public void updateWorkEnd(int id, LocalDate date, LocalTime time) {
+        getUserRepository().WorkEnd(id, date, time);
     }
 
-    public void updatePlace() {
-        getUserRepository().place();
+    public void place(int id,String place,LocalDate date) {
+        getUserRepository().place(id, place, date);
     }
 
+    public void updateAddress(int id,String name,String phone,String mail,String remark){
+        getUserRepository().updateAddress(id, name,phone,mail ,remark);
+
+    }
     public void updateUserEdit()  {getUserRepository().userEdit();}
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
@@ -95,6 +101,9 @@ public class UserService {
         return getUserRepository().getRole(id);
     }
 
+    public List<Map<String, Object>> findRecord(int id){
+        return getUserRepository().findRecord(id);
+    }
 
 
 

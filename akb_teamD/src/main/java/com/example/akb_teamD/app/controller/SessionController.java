@@ -1,3 +1,4 @@
+//確認済み(ok)
 package com.example.akb_teamD.app.controller;
 import com.example.akb_teamD.app.service.UserService;
 

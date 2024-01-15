@@ -8,8 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -33,11 +38,11 @@ public class InputsController {
 
 
 
-    public String getTime() {
-        Date today = new Date();
-        //System.out.println(new SimpleDateFormat("hh:mm:ss").format(today));
-        return new SimpleDateFormat("hh:mm:ss").format(today);
-
+    public LocalTime getTime() {
+        return LocalTime.now();
+    }
+    public LocalDate getDate() {
+            return LocalDate.now();
     }
 
     //出勤退勤ボタン
@@ -48,8 +53,11 @@ public class InputsController {
 
 
     //データベースに情報の挿入&表示
-    @PostMapping("/user_attendanceList")
-    public String attendanceList(Model model) {
+    @PostMapping("/setPlace")
+    public String attendanceList(@RequestParam("place") String place, Model model) {
+
+        int id = (int)session.getAttribute("id");
+        getUserService().place(id,place,getDate());
         return "user_attendanceList";
     }
 
@@ -59,20 +67,34 @@ public class InputsController {
     @GetMapping("/workIn")
     public String workIn(Model model) {
 
-        getUserService().insertWorkStart((int)session.getAttribute("id"),(String)session.getAttribute("name"),getTime());
+        int id = (int)session.getAttribute("id");
+        String name = (String)session.getAttribute("name");
+        getUserService().insertWorkStart(id,name,getTime(),getDate());
         return "user_place";
     }
     @GetMapping("/workOut")
     public String workOut(Model model) {
+
+        int id = (int)session.getAttribute("id");
+        userService.updateWorkEnd(id, getDate(), getTime());
         return "user_attendanceList";
+
     }
     @GetMapping("/breakIn")
     public String breakIn(Model model) {
+
+        int id = (int)session.getAttribute("id");
+        userService.updateBreakStart(id, getDate(), getTime());
         return "user_attendanceList";
+
     }
     @GetMapping("/breakOut")
     public String breakOut(Model model) {
+
+        int id = (int)session.getAttribute("id");
+        userService.updateBreakEnd(id, getDate(), getTime());
         return "user_attendanceList";
+
     }
 
     public UserService getUserService(){

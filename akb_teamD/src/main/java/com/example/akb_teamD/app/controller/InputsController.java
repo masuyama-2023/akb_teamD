@@ -80,6 +80,7 @@ public class InputsController {
 
         int id = (int)session.getAttribute("id");
         userService.updateWorkEnd(id, getDate(), getTime());
+        model.addAttribute("attendList",getUserService().readAttendance(getDate()));
         return "user_attendanceList";
 
     }
@@ -88,6 +89,7 @@ public class InputsController {
 
         int id = (int)session.getAttribute("id");
         userService.updateBreakStart(id, getDate(), getTime());
+        model.addAttribute("attendList",getUserService().readAttendance(getDate()));
         return "user_attendanceList";
 
     }
@@ -96,6 +98,7 @@ public class InputsController {
 
         int id = (int)session.getAttribute("id");
         userService.updateBreakEnd(id, getDate(), getTime());
+        model.addAttribute("attendList",getUserService().readAttendance(getDate()));
         return "user_attendanceList";
 
     }

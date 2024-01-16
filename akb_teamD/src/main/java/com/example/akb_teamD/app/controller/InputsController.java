@@ -84,7 +84,6 @@ public class InputsController {
     @GetMapping("/breakIn")
     public String breakIn(Model model) {
 
-
         if (branchDiligence("breakIn", model).equals("exceed")) {
             return "user_attendanceList";
         } else {
@@ -162,7 +161,7 @@ public class InputsController {
             }
         }
 
-        else if(option.equals("workEnd")){
+        else{
             checker = getUserService().checkStatus(id, getDate());
             if (checker.equals("勤務中")) {
                 getUserService().updateWorkEnd(id, getDate(), getTime());

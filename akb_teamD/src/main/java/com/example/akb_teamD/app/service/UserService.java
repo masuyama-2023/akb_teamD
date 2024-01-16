@@ -105,9 +105,16 @@ public class UserService {
         return getUserRepository().findRecord(id);
     }
 
+    public String checkAttend(int id, LocalDate date){
+        return getUserRepository().checkAttendRecord(id,date);
+    }
 
-
-
+    public String checkStatus(int id, LocalDate date){
+        return getUserRepository().checkStatus(id,date);
+    }
+    public String checkBreak(int id, LocalDate date){
+        return getUserRepository().checkBreak(id,date);
+    }
 
     public UserRepository getUserRepository(){
         return userRepository;

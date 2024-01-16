@@ -67,6 +67,7 @@ public class GlobalMoveController
 
 @GetMapping("/user_diligence")
 public String diligence(Model model){
+        model.addAttribute("name","こんにちは "+session.getAttribute("name")+" さん");
 
         return "user_diligence";
 }

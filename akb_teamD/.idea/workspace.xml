@@ -4,16 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="attendanceList改変2">
+    <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="diligence 休憩開始以外エラー処理実装">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_attendanceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_attendanceList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/InputsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/InputsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_attendanceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_attendanceList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/View.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705281570788</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="attendanceList完成2">
+      <created>1705283654769</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1705283654769</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,7 +165,9 @@
     <MESSAGE value="login,addressの掃除完了" />
     <MESSAGE value="attendanceList改変" />
     <MESSAGE value="attendanceList改変2" />
-    <option name="LAST_COMMIT_MESSAGE" value="attendanceList改変2" />
+    <MESSAGE value="attendanceList完成2" />
+    <MESSAGE value="diligence 休憩開始以外エラー処理実装" />
+    <option name="LAST_COMMIT_MESSAGE" value="diligence 休憩開始以外エラー処理実装" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/akb_teamD$AkbTeamDApplication.ic" NAME="AkbTeamDApplication のカバレッジ結果" MODIFIED="1701160174989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

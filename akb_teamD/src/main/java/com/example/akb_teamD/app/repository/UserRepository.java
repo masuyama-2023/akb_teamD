@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Objects.isNull;
+
 /* = = = = = = = = = = = = = = = = = = = = = =
     TODO メモ(見やすくするためにTODO機能を利用)
         ファイル概要:SQL全般を司る
@@ -26,7 +28,7 @@ public class UserRepository  implements Create, Delete, View, Update{
     private JdbcTemplate jdbcTemplate;
 
     private String sql = null;
-
+    private List<Map<String, Object>> list = new ArrayList<>();
     @Autowired
     public UserRepository(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
@@ -42,7 +44,7 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     @Override
     public void workStart(int id, String name, LocalTime time, LocalDate date) {
-        sql = "INSERT INTO attendances_table(id,name,date,begin_time,status,place) VALUES(?,?,?,?,'勤務中','登録予定')";
+        sql = "INSERT INTO attendances_table(id,name,date,begin_time,status,place,flag_break) VALUES(?,?,?,?,'勤務中','登録予定',0)";
         time = LocalTime.parse(time.format(timeFormatter));
         jdbcTemplate.update(sql,id,name,date,time);
     }
@@ -78,7 +80,7 @@ public class UserRepository  implements Create, Delete, View, Update{
     public void breakStart(int id, LocalDate date, LocalTime time) {
 
         time = LocalTime.parse(time.format(timeFormatter));
-        sql = "UPDATE attendances_table SET break_begin = ?,status = '休憩中' WHERE id = ? AND date = ?";
+        sql = "UPDATE attendances_table SET break_begin = ?,status = '休憩中',flag_break = 1 WHERE id = ? AND date = ?";
         jdbcTemplate.update(sql,time,id,date);
 
     }
@@ -87,7 +89,7 @@ public class UserRepository  implements Create, Delete, View, Update{
     public void breakEnd(int id, LocalDate date, LocalTime time) {
 
         time = LocalTime.parse(time.format(timeFormatter));
-        sql = "UPDATE attendances_table SET break_end = ?,status = '勤務中' WHERE id = ? AND time = ?";
+        sql = "UPDATE attendances_table SET break_end = ?,status = '勤務中' WHERE id = ? AND date  = ?";
         jdbcTemplate.update(sql,time,id,date);
 
     }
@@ -96,7 +98,7 @@ public class UserRepository  implements Create, Delete, View, Update{
     public void WorkEnd(int id, LocalDate date, LocalTime time) {
 
         time = LocalTime.parse(time.format(timeFormatter));
-        sql = "UPDATE attendances_table SET work_end = ?,status = '退勤済' WHERE id = ? AND date = ?";
+        sql = "UPDATE attendances_table SET end_time = ?,status = '退勤済' WHERE id = ? AND date = ?";
         jdbcTemplate.update(sql,time,id,date);
 
     }
@@ -180,7 +182,7 @@ public class UserRepository  implements Create, Delete, View, Update{
     public String getRole(int id) {
         sql = "SELECT role FROM users_table WHERE id = "+ id;
 
-        List<Map<String, Object>> list = new ArrayList<>();
+
         list = jdbcTemplate.queryForList(sql);
         if(list == null || list.size() == 0){
             return "No Role";
@@ -194,6 +196,42 @@ public class UserRepository  implements Create, Delete, View, Update{
 
         return jdbcTemplate.queryForList(sql,id);
     }
+
+    public String checkAttendRecord(int id, LocalDate date) {
+        sql = "SELECT * FROM attendances_table WHERE id = ? AND date = ?";
+        System.out.println(jdbcTemplate.queryForList(sql,id,date));
+        list = jdbcTemplate.queryForList(sql,id,date);
+        if (list == null || list.size() == 0) {
+            return "No Record";
+        }
+        return "exceed";
+    }
+
+    public String checkStatus(int id, LocalDate date){
+        sql = "SELECT * FROM attendances_table WHERE id = ? AND date = ?";
+        list = jdbcTemplate.queryForList(sql,id,date);
+        if (list == null || list.size() == 0) {
+            return "No Record";
+        }
+        return (String)list.get(0).get("status");
+
+    }
+
+    public String checkBreak(int id, LocalDate date){
+        sql = "SELECT flag_break FROM attendances_table WHERE id = ? AND date = ?";
+        list = jdbcTemplate.queryForList(sql,id,date);
+
+        System.out.println((String)list.get(0).get("flag_break"));
+        int check = (int) list.get(0).get("flag_break");
+        if (check == 0) {
+            return "First Break";
+        }
+        else{
+            return "Second";
+        }
+
+    }
+
 
     public JdbcTemplate getJdbcTemplate(){
         return jdbcTemplate;

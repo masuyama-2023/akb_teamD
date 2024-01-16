@@ -221,8 +221,8 @@ public class UserRepository  implements Create, Delete, View, Update{
         sql = "SELECT flag_break FROM attendances_table WHERE id = ? AND date = ?";
         list = jdbcTemplate.queryForList(sql,id,date);
 
-        System.out.println((String)list.get(0).get("flag_break"));
         int check = (int) list.get(0).get("flag_break");
+        System.out.println(check);
         if (check == 0) {
             return "First Break";
         }

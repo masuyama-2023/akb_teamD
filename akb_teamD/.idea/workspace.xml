@@ -6,18 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="diligence 休憩開始以外エラー処理実装">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/InputsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/InputsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/View.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705283654769</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="diligence 休憩開始以外エラー処理実装">
+      <created>1705386580755</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705386580755</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

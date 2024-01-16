@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 /* = = = = = = = = = = = = = = = = = = = = = =
@@ -33,7 +36,6 @@ public class AdminMoveController {
 
     @GetMapping("times")
     public String displayTimes(Model model) {
-
         return "adm_display_time";
     }
 
@@ -47,16 +49,25 @@ public class AdminMoveController {
         return "adm_user_add";
     }
 
-    @PostMapping("user_edit")
-    public String userEdit(Model model){
-        System.out.println("Hello world");
-        return "adm_user_edit";
-    }
 
-    @GetMapping("user_list")
-    public String userList(Model model) {
+    @PostMapping("user_edit_check")
+    public String editCheck(@RequestParam("name") String name,@RequestParam("afterId") int afterId, @RequestParam("password")String pass,@RequestParam
+            ("beforeId")int beforeId,Model model){
+        int no = userService.getUserNo(beforeId);
+        System.out.println(no);
+        userService.updateUserEdit(no,name,afterId,pass);
+        model.addAttribute("users",userService.readUserList());
         return "adm_userList";
     }
+
+    @GetMapping("adm_user_list")
+    public String userList(Model model) {
+
+        System.out.println(userService.readUserList());
+        model.addAttribute("users",userService.readUserList());
+        return "adm_userList";
+    }
+
 
     public UserService getUserService(){
         return userService;

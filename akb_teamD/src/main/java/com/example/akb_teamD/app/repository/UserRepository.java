@@ -110,9 +110,11 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void userEdit()  {
-
+    public void userEdit(int no, String name, int id,String pass) {
+        sql = "UPDATE users_table SET id = " + id + ", name = '" + name + "',password = '" + pass + "' WHERE no = " + no;
+        jdbcTemplate.update(sql);
     }
+
 
     @Override
     public void updateAddress(int id,String name,String phone,String mail, String remark){
@@ -230,8 +232,19 @@ public class UserRepository  implements Create, Delete, View, Update{
             return "Second";
         }
 
-    }
 
+    }
+    public int getUserNo(int id) {
+        sql = "SELECT no FROM users_table WHERE id = "+id;
+
+        List<Map<String, Object>> list = new ArrayList<>();
+        list = jdbcTemplate.queryForList(sql);
+        if(list == null || list.size() == 0){
+            return 0;
+        }
+        System.out.println("レコードが存在します。");
+        return (int) jdbcTemplate.queryForList(sql).get(0).get("no");
+    }
 
     public JdbcTemplate getJdbcTemplate(){
         return jdbcTemplate;

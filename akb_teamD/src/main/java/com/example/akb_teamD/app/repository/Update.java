@@ -11,7 +11,8 @@ public interface Update {
     void WorkEnd(int id, LocalDate date, LocalTime time); //退勤
     void place(int id, String place, LocalDate date); //勤務地登録
 
-    void userEdit() ; //ユーザー編集
+    void userEdit(int no, String name,int id,String pass); //ユーザー編集
+
 
     void updateAddress(int id, String name,String phone, String mail,String remark);
 }

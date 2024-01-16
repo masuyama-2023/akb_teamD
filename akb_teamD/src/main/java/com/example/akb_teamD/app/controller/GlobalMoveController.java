@@ -68,17 +68,20 @@ public class GlobalMoveController
 @GetMapping("/user_diligence")
 public String diligence(Model model){
         model.addAttribute("name","こんにちは "+session.getAttribute("name")+" さん");
+        model.addAttribute("role",session.getAttribute("role"));
 
         return "user_diligence";
 }
     @GetMapping("/user_attendanceList")
     public String view_attendance(Model model) {
         model.addAttribute("attendList",getUserService().readAttendance(getInputs().getDate()));
+        model.addAttribute("role",session.getAttribute("role"));
         return "user_attendanceList";
     }
 
     @GetMapping("/user_place")
     public String viewPlace(Model model){
+        model.addAttribute("role",session.getAttribute("role"));
         return "user_place";
     }
 
@@ -137,6 +140,7 @@ public String diligence(Model model){
         //formに月を送る
         model.addAttribute("fromJV_left_month", past_month);
         model.addAttribute("fromJV_right_month", next_month);
+        model.addAttribute("role",session.getAttribute("role"));
 
         //postgres
         String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
@@ -158,6 +162,7 @@ public String diligence(Model model){
 
         model.addAttribute("fromJV_left_month", past_month);
         model.addAttribute("fromJV_right_month", next_month);
+        model.addAttribute("role",session.getAttribute("role"));
         //postgres
         String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
                 "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working" +
@@ -189,7 +194,7 @@ public String diligence(Model model){
         String sql_user = "SELECT *FROM users_table";
         List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList(sql_user);
         model.addAttribute("fromJV_user", usersList);
-
+        model.addAttribute("role",session.getAttribute("role"));
         //postgres
         String sql_sel = "SELECT id,name,TO_CHAR(SUM((end_time - begin_time) - (break_end - break_begin))," +
                 " 'HH24:MI:SS')" + " AS working_sum"
@@ -231,7 +236,7 @@ public String diligence(Model model){
 
         List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
         model.addAttribute("fromJV_sel", attendences);
-
+        model.addAttribute("role",session.getAttribute("role"));
         return "adm_display_times";
     }
     ////////////////////////////
@@ -300,6 +305,7 @@ public String diligence(Model model){
 
         List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
         model.addAttribute("fromJV_sel", attendences);
+        model.addAttribute("role",session.getAttribute("role"));
         return "adm_select_disp_times";
     }
     ////////////////////////////
@@ -310,12 +316,15 @@ public String diligence(Model model){
 
 
     @GetMapping ("/user_contact_address")
-    public String address_get(){return "user_contact_address";}
+    public String address_get(Model model){
+        model.addAttribute("role",session.getAttribute("role"));return "user_contact_address";
+    }
     @PostMapping("/user_contact_address")
     public String address(HttpServletRequest request,
                           @RequestParam(name = "phone", required = false) String phone,
                           @RequestParam(name = "mail", required = false) String mail,
-                          @RequestParam(name = "remark", required = false) String remark) throws SQLException {
+                          @RequestParam(name = "remark", required = false) String remark,
+                          Model model) throws SQLException {
 
         // 取得した内容をコンソールに表示(改変前（益山）)
         //String DatabaseName = DatabaseProperties.getDatabase();
@@ -340,6 +349,7 @@ public String diligence(Model model){
                     getUserService().updateAddress(id,name,phone,mail,remark);
             }
         }
+        model.addAttribute("role",session.getAttribute("role"));
         return "user_contact_address";
 
     }

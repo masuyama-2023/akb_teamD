@@ -43,6 +43,7 @@ public class InputsController {
     //出勤退勤ボタン
     @PostMapping("/user_diligence")
     public String diligence(Model model) {
+        model.addAttribute("role",session.getAttribute("role"));
         return "user_diligence";
     }
 
@@ -55,6 +56,7 @@ public class InputsController {
         getUserService().place(id, place, getDate());
 
         model.addAttribute("attendList", getUserService().readAttendance(getDate()));
+        model.addAttribute("role",session.getAttribute("role"));
         System.out.println(getUserService().readAttendance(getDate()));
         return "user_attendanceList";
     }
@@ -63,6 +65,7 @@ public class InputsController {
     //TODO 勤怠管理ボタンの中身実装(return値は仮入力されたもの)
     @GetMapping("/workIn")
     public String workIn(Model model) {
+        model.addAttribute("role",session.getAttribute("role"));
         if(branchDiligence("workIn",model).equals("exceed")) {
             return "user_place";
         }
@@ -73,7 +76,7 @@ public class InputsController {
 
     @GetMapping("/workOut")
     public String workOut(Model model) {
-
+        model.addAttribute("role",session.getAttribute("role"));
         if(branchDiligence("workOut",model).equals("exceed")) {
             return "user_attendanceList";
         }
@@ -83,7 +86,7 @@ public class InputsController {
     }
     @GetMapping("/breakIn")
     public String breakIn(Model model) {
-
+        model.addAttribute("role",session.getAttribute("role"));
         if (branchDiligence("breakIn", model).equals("exceed")) {
             return "user_attendanceList";
         } else {
@@ -93,6 +96,7 @@ public class InputsController {
 
     @GetMapping("/breakOut")
     public String breakOut(Model model) {
+        model.addAttribute("role",session.getAttribute("role"));
         if (branchDiligence("breakOut", model).equals("exceed")) {
             return "user_attendanceList";
         } else {

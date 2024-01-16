@@ -1,6 +1,7 @@
 package com.example.akb_teamD.app.repository;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,9 @@ public interface View {
     String getRole(int id);
     List<Map<String, Object>> findRecord(int id);
 
+    String checkAttendRecord(int id, LocalDate date);
+    String checkStatus(int id, LocalDate date);
+    String checkBreak(int id, LocalDate date);
 }
 
 

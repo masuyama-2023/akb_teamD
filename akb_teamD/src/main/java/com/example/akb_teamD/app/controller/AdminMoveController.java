@@ -49,6 +49,20 @@ public class AdminMoveController {
         return "adm_user_add";
     }
 
+    @RequestMapping(value="/edit" ,method = RequestMethod.POST)
+    public String userEdit(@RequestParam("userId") int id, Model model){
+
+        List<Map<String, Object>> users = new ArrayList<>();
+        users = userService.getUserById(id);
+
+        model.addAttribute("name",users.get(0).get("name"));
+        model.addAttribute("beforeId",id);
+        model.addAttribute("afterId",id);
+        model.addAttribute("pass",users.get(0).get("password"));
+
+
+        return "adm_user_edit";
+    }
 
     @PostMapping("user_edit_check")
     public String editCheck(@RequestParam("name") String name,@RequestParam("afterId") int afterId, @RequestParam("password")String pass,@RequestParam

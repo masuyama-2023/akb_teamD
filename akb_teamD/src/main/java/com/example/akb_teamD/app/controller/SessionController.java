@@ -42,6 +42,7 @@ public class SessionController {
 
 
             model.addAttribute("name","こんにちは "+session.getAttribute("name")+" さん");
+            model.addAttribute("role",session.getAttribute("role"));
 
             return "user_diligence";
     }

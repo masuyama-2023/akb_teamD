@@ -145,12 +145,6 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     }
 
-    @Override
-    public List<Map<String, Object>> findUserList() {
-        sql = "SELECT * FROM attendances_table";
-        return jdbcTemplate.queryForList(sql);
-
-    }
 
     @Override
     public List<Map<String, Object>> findSelectTimes() {
@@ -244,6 +238,16 @@ public class UserRepository  implements Create, Delete, View, Update{
         }
         System.out.println("レコードが存在します。");
         return (int) jdbcTemplate.queryForList(sql).get(0).get("no");
+    }
+
+    @Override
+    public List<Map<String, Object>> findUserList() {
+        sql = "SELECT * FROM users_table ORDER BY no ASC";
+        return jdbcTemplate.queryForList(sql);
+    }
+    public List<Map<String,Object>> getUserById(int id){
+        sql="SELECT * FROM users_table WHERE id = "+ id;
+        return jdbcTemplate.queryForList(sql);
     }
 
     public JdbcTemplate getJdbcTemplate(){

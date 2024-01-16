@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/AdminMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/AdminMoveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/InputsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/Update.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/repository/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_user_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_user_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_attendanceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_attendanceList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_contact_address.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_contact_address.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_disp_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_disp_history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_place.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_place.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_attendanceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_attendanceList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_contact_address.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_contact_address.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_disp_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_disp_history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_place.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_place.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

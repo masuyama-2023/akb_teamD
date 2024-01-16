@@ -124,5 +124,8 @@ public class UserService {
         return getUserRepository().getUserNo(id);
     }
 
+    public List<Map<String,Object>> getUserById(int id){
+        return getUserRepository().getUserById(id);
+    }
 
 }

@@ -22,6 +22,8 @@ public interface View {
     String checkAttendRecord(int id, LocalDate date);
     String checkStatus(int id, LocalDate date);
     String checkBreak(int id, LocalDate date);
+    List<Map<String,Object>> getUserById(int id);
+
 }
 
 

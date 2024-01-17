@@ -241,7 +241,8 @@ public String diligence(Model model){
     }
     ////////////////////////////
     ///運営用、選択した人の勤務時間集計一覧////
-    @GetMapping("/adm_select_disp_times")
+
+    @GetMapping("/adm_select_display_times")
     public String adm_select(Model model) {
         //今日の日付を取得
         LocalDate currentDate = LocalDate.now();
@@ -274,11 +275,11 @@ public String diligence(Model model){
         List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList(sql_user);
         model.addAttribute("fromJV_user", usersList);
 
-        return "adm_select_disp_times";
+        return "adm_select_display_times";
     }
-    @PostMapping("/adm_select_disp_times")
-    public String adm_select_click(HttpServletRequest request, Model model,
-                                    @RequestParam("place") String selectedPlace) {
+    @PostMapping("/adm_select_display_times")
+    public String adm_slect_click(HttpServletRequest request, Model model,
+                                  @RequestParam("place") String selectedPlace) {
         String search = selectedPlace;
         // ボタンがクリックされたかどうかを判定
         String action = request.getParameter("action");
@@ -299,14 +300,13 @@ public String diligence(Model model){
 
         //postgres
         String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum,"
-               + "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working"
-               + " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month
-               + "/15' AND "+selectedPlace+"="+search;
+                + "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working"
+                + " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month
+                + "/15' AND "+selectedPlace+"="+search;
 
         List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
         model.addAttribute("fromJV_sel", attendences);
-        model.addAttribute("role",session.getAttribute("role"));
-        return "adm_select_disp_times";
+        return "adm_select_display_times";
     }
     ////////////////////////////
 

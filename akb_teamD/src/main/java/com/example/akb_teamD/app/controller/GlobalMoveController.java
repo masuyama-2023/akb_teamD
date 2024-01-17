@@ -1,4 +1,5 @@
 package com.example.akb_teamD.app.controller;
+import com.example.akb_teamD.app.repository.UserRepository;
 import com.example.akb_teamD.app.service.UserService;
 import com.example.akb_teamD.app.controller.InputsController;
 import jakarta.servlet.ServletException;
@@ -85,11 +86,11 @@ public String diligence(Model model){
         return "user_place";
     }
 
-      /////勤怠履歴///////
     //TODO ログインしているユーザーの情報から勤怠履歴を取得
     private static String past_month = null;
     private static String next_month = null;
 
+    //月の変動処理
     public static void Click_MonthMutation(String action) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/[]M");
         //計算をするために型を変える
@@ -112,9 +113,9 @@ public String diligence(Model model){
             System.out.println("Click_MonthMutation無効");
         }
     }
-
-    @GetMapping("/user_disp_history")
-    public String history(Model model) {
+    ///////////////
+    //今日の日付を取得
+    public static void DetermineTheMonth(){
         //今日の日付を取得
         LocalDate currentDate = LocalDate.now();
         //今日の日にちを取得
@@ -137,19 +138,20 @@ public String diligence(Model model){
             past_month = changeMonth.format(Formatter);
             next_month = currentDate.format(Formatter);
         }
+    }
+    ///////////////////
+    /////勤怠履歴///////
+    @GetMapping("/user_disp_history")
+    public String history(Model model) {
+        //年月の初期値
+        DetermineTheMonth();
         //formに月を送る
         model.addAttribute("fromJV_left_month", past_month);
         model.addAttribute("fromJV_right_month", next_month);
         model.addAttribute("role",session.getAttribute("role"));
 
-        //postgres
-        String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
-                "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working" +
-                " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month +
-                "/15'AND id ="+ session.getAttribute("id");
-
-        List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
-        model.addAttribute("fromJV_sel", attendances);
+        List<Map<String, Object>> attendences = this.getWorkAndRestTimeFrom(past_month, next_month);
+        model.addAttribute("fromJV_sel", attendences);
 
         return "user_disp_history";
     }
@@ -163,16 +165,19 @@ public String diligence(Model model){
         model.addAttribute("fromJV_left_month", past_month);
         model.addAttribute("fromJV_right_month", next_month);
         model.addAttribute("role",session.getAttribute("role"));
-        //postgres
-        String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
-                "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working" +
-                " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month +
-                "/15' AND id ="+session.getAttribute("id");
 
-        List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
-        model.addAttribute("fromJV_sel", attendances);
+        List<Map<String, Object>> attendences = this.getWorkAndRestTimeFrom(past_month, next_month);
+        model.addAttribute("fromJV_sel", attendences);
 
         return "user_disp_history";
+    }
+    //勤怠履歴,30日分取得
+    private List<Map<String, Object>> getWorkAndRestTimeFrom(String past_month, String next_month) {
+        String sql_sel = UserRepository.getUserDisplayHistorySql()+
+                " WHERE '" + past_month + "/15' <= date AND date < '"+ next_month +
+                "/15'AND id ="+ session.getAttribute("id");
+        List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
+        return attendences;
     }
     //////////////////
     ///運営用、勤怠時間集計一覧////
@@ -195,15 +200,12 @@ public String diligence(Model model){
         List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList(sql_user);
         model.addAttribute("fromJV_user", usersList);
         model.addAttribute("role",session.getAttribute("role"));
-        //postgres
-        String sql_sel = "SELECT id,name,TO_CHAR(SUM((end_time - begin_time) - (break_end - break_begin))," +
-                " 'HH24:MI:SS')" + " AS working_sum"
-                + " FROM attendances_table"
+        //postgres　月の総合労働時間の表示
+        String sql_sel = UserRepository.getAdmDisplayTimesSql()
                 + " WHERE '" + past_month + "/01' <= date AND date < '" + next_month +"/01'"
                 + " GROUP BY id,name";
         List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
         model.addAttribute("fromJV_sel", attendances);
-
         return "adm_display_times";
     }
     @PostMapping("/adm_display_times")
@@ -222,14 +224,11 @@ public String diligence(Model model){
         List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList(sql_user);
         model.addAttribute("fromJV_user", usersList);
 
-        if ("検索".equals(action)&& !"'f'".equals(search)) {
+        if ("検索".equals(action)&& !"'ShoWallUsers'".equals(search)) {
             search = "id";
         }
-
-        //postgres
-        String sql_sel = "SELECT id,name,TO_CHAR(SUM((end_time - begin_time) - (break_end - break_begin))," +
-                " 'HH24:MI:SS')" + " AS working_sum"
-                + " FROM attendances_table"
+        //postgres 月の総合労働時間の表示
+        String sql_sel = UserRepository.getAdmDisplayTimesSql()
                 + " WHERE '" + past_month + "/01' <= date AND date < '" + next_month +"/01'"
                 + "AND "+selectedPlace+"="+search
                 + " GROUP BY id,name";
@@ -241,31 +240,10 @@ public String diligence(Model model){
     }
     ////////////////////////////
     ///運営用、選択した人の勤務時間集計一覧////
-
     @GetMapping("/adm_select_display_times")
     public String adm_select(Model model) {
         //今日の日付を取得
-        LocalDate currentDate = LocalDate.now();
-        //今日の日にちを取得
-        DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("[]d");
-        String day = currentDate.format(dayFormatter);
-        //年月を格納
-        DateTimeFormatter Formatter = DateTimeFormatter.ofPattern("yyyy/[]M");
-
-        //日付から表示する日付を設定
-        if (15 <= Integer.parseInt(day)) {
-            //次の月を取得
-            LocalDate changeMonth = currentDate.plusMonths(1);
-
-            next_month = changeMonth.format(Formatter);
-            past_month = currentDate.format(Formatter);
-        } else {
-            //前の月を取得
-            LocalDate changeMonth = currentDate.minusMonths(1);
-
-            past_month = changeMonth.format(Formatter);
-            next_month = currentDate.format(Formatter);
-        }
+        DetermineTheMonth();
         //formに月を送る
         model.addAttribute("fromJV_left_month", past_month);
         model.addAttribute("fromJV_right_month", next_month);
@@ -297,12 +275,10 @@ public String diligence(Model model){
         if ("検索".equals(action)&& !"null".equals(search)) {
             search = "id";
         }
-
-        //postgres
-        String sql_sel = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum,"
-                + "to_char((end_time - begin_time) - (break_end - break_begin), 'HH24:MI:SS') AS working"
+        //postgres 選択したユーザーの日ごとの労働時間の詳細を1月分獲得する
+        String sql_sel = UserRepository.getAdmSelectSql()
                 + " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month
-                + "/15' AND "+selectedPlace+"="+search;
+                + "/15' AND "+selectedPlace+"="+search;;
 
         List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
         model.addAttribute("fromJV_sel", attendances);

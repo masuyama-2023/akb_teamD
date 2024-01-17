@@ -267,6 +267,27 @@ public class UserRepository  implements Create, Delete, View, Update{
         return jdbcTemplate;
     }
 
+    public static String getAdmSelectSql(){
+        String sql = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum,"
+                + "to_char((end_time - begin_time) - (CASE WHEN break_end IS NOT NULL AND break_begin IS NOT NULL THEN "
+                + "(break_end - break_begin) ELSE INTERVAL '0' SECOND END),'HH24:MI:SS') AS working";
+        return sql;
+    }
+
+    public static String getAdmDisplayTimesSql(){
+        String sql = "SELECT id,name,TO_CHAR(SUM((end_time - begin_time)"
+                + " - CASE WHEN break_end IS NOT NULL AND break_begin IS NOT NULL THEN "
+                + "(break_end - break_begin) ELSE INTERVAL '0' SECOND END),'HH24:MI:SS') AS working_sum"
+                + " FROM attendances_table";
+        return sql;
+    }
+
+    public static String getUserDisplayHistorySql(){
+        String sql = "SELECT *,to_char(break_end - break_begin, 'HH24:MI:SS') AS break_sum," +
+                "to_char((end_time - begin_time) - (CASE WHEN break_end IS NOT NULL AND break_begin IS NOT NULL THEN " +
+                "(break_end - break_begin) ELSE INTERVAL '0' SECOND END),'HH24:MI:SS') AS working FROM attendances_table";
+        return sql;
+    }
 
 
 }

@@ -27,7 +27,7 @@
         <p>
         <form method="post" action="/adm_display_times">
             <select class="place" name="place">
-                <option value="'f'" text=""></option>
+                <option value="'ShoWallUsers'" text=""></option>
                 <option th:each="usersList : ${fromJV_user}" th:value="${usersList['id']}"
                         th:text="${usersList['name']}"></option>
             </select>

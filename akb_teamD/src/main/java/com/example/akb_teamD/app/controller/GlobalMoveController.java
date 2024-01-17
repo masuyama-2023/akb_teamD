@@ -70,6 +70,15 @@ public class GlobalMoveController
 public String diligence(Model model){
         model.addAttribute("name","こんにちは "+session.getAttribute("name")+" さん");
         model.addAttribute("role",session.getAttribute("role"));
+        String status = "状態：";
+        if(userService.checkStatus((int)session.getAttribute("id"),inputController.getDate()).equals("No Record")){
+         status = status + "未出勤";
+        }
+        else {
+            status = status + userService.checkStatus((int)session.getAttribute("id"),inputController.getDate());
+        }
+
+        model.addAttribute("status",status);
 
         return "user_diligence";
 }

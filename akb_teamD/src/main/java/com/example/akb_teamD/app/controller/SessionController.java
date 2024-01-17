@@ -1,7 +1,8 @@
 //確認済み(ok)
 package com.example.akb_teamD.app.controller;
 import com.example.akb_teamD.app.service.UserService;
-
+import com.example.akb_teamD.app.controller.InputsController;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,13 @@ public class SessionController {
 
     private UserService userService;
 
+    private InputsController inputController;
+
     @Autowired
-    public SessionController(HttpSession session ,UserService userService) {
+    public SessionController(HttpSession session ,UserService userService, InputsController inputController) {
         this.session = session;
         this.userService = userService;
+        this.inputController = inputController;
     }
 
 
@@ -39,11 +43,19 @@ public class SessionController {
 
             System.out.println(session.getAttribute("role"));
 
+        String status = "状態：";
+        if(userService.checkStatus((int)session.getAttribute("id"),inputController.getDate()).equals("No Record")){
+            status = status + "未出勤";
+        }
+        else {
+            status = status + userService.checkStatus((int)session.getAttribute("id"),inputController.getDate());
+        }
 
 
             model.addAttribute("name","こんにちは "+session.getAttribute("name")+" さん");
             model.addAttribute("role",session.getAttribute("role"));
 
+            model.addAttribute("status",status);
             return "user_diligence";
     }
 
@@ -55,6 +67,11 @@ public class SessionController {
 
     public UserService getUserService(){
         return userService;
+    }
+
+
+    public InputsController getInputs(){
+        return inputController;
     }
 
 }

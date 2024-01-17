@@ -90,7 +90,7 @@
     </br></br></br></br>    
         <h1 class="center" th:text="${name}" ></h1>
         <h1 class="center" th:text="${Error}" ></h1>
-        <p>状態：未出勤</p>
+        <p th:text="${status}"></p>
 
         <form th:action="@{/workIn}" method="get">
             <p><input type="submit" class="btn-square-shadow" value="出勤"  id="IN" onclick="return alerts(1)"></input></p>

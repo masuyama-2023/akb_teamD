@@ -112,9 +112,15 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void userEdit(int no, String name, int id,String pass) {
-        sql = "UPDATE users_table SET id = " + id + ", name = '" + name + "',password = '" + pass + "' WHERE no = " + no;
-        jdbcTemplate.update(sql);
+    public void userEdit(int no, String name,int beforeId ,int afterId,String pass) {
+        //users_table編集
+        sql = "UPDATE users_table SET id = ?, name = ? ,password = ?  WHERE no = ?";
+        jdbcTemplate.update(sql,afterId,name,pass,no);
+
+        //address_table編集
+        sql = "UPDATE users_table SET id = ?, name = ? ,password = ?  WHERE no = ?";
+        //attendances_table編集
+
     }
 
 
@@ -147,6 +153,8 @@ public class UserRepository  implements Create, Delete, View, Update{
 
     }
 
+
+    /*直打ちを確認したため、後日編集*/
 
     @Override
     public List<Map<String, Object>> findSelectTimes() {

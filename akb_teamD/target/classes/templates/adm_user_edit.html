@@ -44,13 +44,15 @@
 <form action="user_edit_check" method="post" >
     <h1 class="center">ユーザー編集</h1>
     <p>名前</p>
-    <p><input type="text" name="name" th:value="${name}"/></p>
+    <p><input type="text" name="afterName" th:value="${name}"/></p>
     <p>ログインID</p>
-    <p><input type="text" name="afterId" th:value="${afterId}"/></p>
+    <p><input type="text" name="afterId" th:value="${id}"/></p>
     <p>Password</p>
-    <p><input type="password" name="password" th:value="${pass}" /></p>
+    <p><input type="password" name="afterPass" th:value="${pass}" /></p>
 
-    <input type="hidden" name="beforeId" th:value="${beforeId}"/>
+    <input type="hidden" name="beforeId" th:value="${id}"/>
+    <input type="hidden" name="beforeName" th:value="${name}"/>
+    <input type="hidden" name="beforePass" th:value="${pass}"/>
     <p><input type="submit" value="編集適用" id="button"></p>
 </form>
 

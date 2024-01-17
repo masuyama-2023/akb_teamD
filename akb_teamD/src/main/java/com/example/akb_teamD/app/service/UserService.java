@@ -59,8 +59,8 @@ public class UserService {
         getUserRepository().updateAddress(id, name,phone,mail ,remark);
 
     }
-    public void updateUserEdit( int no,String name,int id,String pass){
-        getUserRepository().userEdit(no, name,id,pass);
+    public void updateUserEdit( int no,String name,int beforeId ,int afterId,String pass){
+        getUserRepository().userEdit(no, name,beforeId,afterId,pass);
     }
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   DELETE文                              *
@@ -79,7 +79,7 @@ public class UserService {
     public List<Map<String, Object>> readAttendance(LocalDate date){
         return getUserRepository().findAttendance(date);
     }
-
+    /*直打ちを確認したため、後日編集*/
     public List<Map<String,Object>> readDisplayTimes(){
         return getUserRepository().findDisplayTimes();
     }
@@ -87,6 +87,7 @@ public class UserService {
     public List<Map<String,Object>> readUserList(){
         return getUserRepository().findUserList();
     }
+    /*直打ちを確認したため、後日編集*/
     public List<Map<String,Object>> readSelectTimes(){
         return getUserRepository().findSelectTimes();
     }

@@ -47,8 +47,7 @@ public class AdminMoveController {
         users = userService.getUserById(id);
 
         model.addAttribute("name",users.get(0).get("name"));
-        model.addAttribute("beforeId",id);
-        model.addAttribute("afterId",id);
+        model.addAttribute("id",id);
         model.addAttribute("pass",users.get(0).get("password"));
 
 
@@ -56,11 +55,23 @@ public class AdminMoveController {
     }
 
     @PostMapping("user_edit_check")
-    public String editCheck(@RequestParam("name") String name,@RequestParam("afterId") int afterId, @RequestParam("password")String pass,@RequestParam
-            ("beforeId")int beforeId,Model model){
+    public String editCheck(@RequestParam("afterName") String name,@RequestParam("afterId") int afterId, @RequestParam("afterPass")String pass,@RequestParam
+            ("beforeId")int beforeId, @RequestParam("beforeName") String beforeName, @RequestParam("afterPass")String beforePass,Model model){
+        //users_tableの主キーの取得
         int no = userService.getUserNo(beforeId);
-        System.out.println(no);
-        userService.updateUserEdit(no,name,afterId,pass);
+        //編集後のidの重複確認
+        List<Map<String,Object>> list = new ArrayList<>();
+        list = userService.getUserById(afterId);
+        if(list.size() != 0) {
+                System.out.println("idの重複");
+            model.addAttribute("name",beforeName);
+            model.addAttribute("id",beforeId);
+            model.addAttribute("pass",beforePass);
+
+            return "adm_user_edit";
+        }
+
+        userService.updateUserEdit(no,name,beforeId,afterId,pass);
         model.addAttribute("users",userService.readUserList());
         return "adm_userList";
     }
@@ -75,9 +86,7 @@ public class AdminMoveController {
 
     @PostMapping("delete_check")
     public String deleteUser(@RequestParam("beforeId") int id, Model model){
-        System.out.println(id);
         userService.userDelete(id);
-
         model.addAttribute("users",userService.readUserList());
         return "adm_userList";
     }

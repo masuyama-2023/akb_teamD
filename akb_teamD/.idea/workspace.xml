@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="edit完成">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/SessionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_diligence.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/SessionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/SessionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_diligence.html" afterDir="false" />
-    </list>
+    <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="edit完成" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

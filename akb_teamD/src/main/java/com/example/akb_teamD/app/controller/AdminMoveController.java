@@ -34,15 +34,6 @@ public class AdminMoveController {
 
 
 
-    @GetMapping("times")
-    public String displayTimes(Model model) {
-        return "adm_display_time";
-    }
-
-    @PostMapping("sel_time")
-    public String selectDisplayTimes(Model model) {
-        return "adm_select_disp_times";
-    }
 
     @GetMapping("user_add")
     public String userAdd(Model model) {
@@ -78,6 +69,15 @@ public class AdminMoveController {
     public String userList(Model model) {
 
         System.out.println(userService.readUserList());
+        model.addAttribute("users",userService.readUserList());
+        return "adm_userList";
+    }
+
+    @PostMapping("delete_check")
+    public String deleteUser(@RequestParam("beforeId") int id, Model model){
+        System.out.println(id);
+        userService.userDelete(id);
+
         model.addAttribute("users",userService.readUserList());
         return "adm_userList";
     }

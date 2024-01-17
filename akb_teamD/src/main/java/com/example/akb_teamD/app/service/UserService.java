@@ -66,8 +66,8 @@ public class UserService {
      *                                   DELETE文                              *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    public void userDelete(){
-        getUserRepository().userDelete();
+    public void userDelete(int id){
+        getUserRepository().userDelete(id);
     }
 
 

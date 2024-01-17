@@ -68,7 +68,9 @@ public class UserRepository  implements Create, Delete, View, Update{
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     @Override
-    public void userDelete() {
+    public void userDelete(int id) {
+        sql = "DELETE FROM users_table WHERE id = ?";
+        jdbcTemplate.update(sql,id);
 
     }
 

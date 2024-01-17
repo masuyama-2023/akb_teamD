@@ -8,6 +8,24 @@
     <link href="css/design.css" rel="stylesheet" type="text/css">
     <link href="css/global.css" rel="stylesheet" type="text/css">
 
+    <script>
+
+            function alert(){
+
+                var checked;
+                checked = window.confirm("削除しますか？");
+
+                return checked;
+
+
+            }
+
+
+
+    </script>
+
+
+
 </head>
 
 <body>
@@ -34,6 +52,11 @@
 
     <input type="hidden" name="beforeId" th:value="${beforeId}"/>
     <p><input type="submit" value="編集適用" id="button"></p>
+</form>
+
+<form action="delete_check" name="delete" method="post" >
+    <input type="hidden" name ="beforeId" th:value="${beforeId}" >
+    <p><input type="submit" th:value="削除" onclick="return alert()"></p>
 </form>
 
 <form th:action="@{/adm_user_list}" name="new" method="get">

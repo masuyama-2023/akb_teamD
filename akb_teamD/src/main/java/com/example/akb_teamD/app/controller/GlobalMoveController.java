@@ -148,8 +148,8 @@ public String diligence(Model model){
                 " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month +
                 "/15'AND id ="+ session.getAttribute("id");
 
-        List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
-        model.addAttribute("fromJV_sel", attendences);
+        List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
+        model.addAttribute("fromJV_sel", attendances);
 
         return "user_disp_history";
     }
@@ -169,8 +169,8 @@ public String diligence(Model model){
                 " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month +
                 "/15' AND id ="+session.getAttribute("id");
 
-        List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
-        model.addAttribute("fromJV_sel", attendences);
+        List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
+        model.addAttribute("fromJV_sel", attendances);
 
         return "user_disp_history";
     }
@@ -201,8 +201,8 @@ public String diligence(Model model){
                 + " FROM attendances_table"
                 + " WHERE '" + past_month + "/01' <= date AND date < '" + next_month +"/01'"
                 + " GROUP BY id,name";
-        List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
-        model.addAttribute("fromJV_sel", attendences);
+        List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
+        model.addAttribute("fromJV_sel", attendances);
 
         return "adm_display_times";
     }
@@ -234,8 +234,8 @@ public String diligence(Model model){
                 + "AND "+selectedPlace+"="+search
                 + " GROUP BY id,name";
 
-        List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
-        model.addAttribute("fromJV_sel", attendences);
+        List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
+        model.addAttribute("fromJV_sel", attendances);
         model.addAttribute("role",session.getAttribute("role"));
         return "adm_display_times";
     }
@@ -304,8 +304,8 @@ public String diligence(Model model){
                 + " FROM attendances_table WHERE '" + past_month + "/15' <= date AND date < '"+ next_month
                 + "/15' AND "+selectedPlace+"="+search;
 
-        List<Map<String, Object>> attendences = this.jdbcTemplate.queryForList(sql_sel);
-        model.addAttribute("fromJV_sel", attendences);
+        List<Map<String, Object>> attendances = this.jdbcTemplate.queryForList(sql_sel);
+        model.addAttribute("fromJV_sel", attendances);
         return "adm_select_display_times";
     }
     ////////////////////////////

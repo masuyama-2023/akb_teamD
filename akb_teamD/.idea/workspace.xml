@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/GlobalMoveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_display_times.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_display_times.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_select_disp_times.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_select_display_times.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_userList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_userList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_user_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_user_add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_user_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_user_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" afterDir="false" />
-    </list>
+    <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="edit反映" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,7 +126,21 @@
       <option name="project" value="LOCAL" />
       <updated>1705386580755</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ここからadmファイル">
+      <created>1705451895498</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705451895498</updated>
+    </task>
+    <task id="LOCAL-00013" summary="edit反映">
+      <created>1705452187933</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705452187933</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,7 +174,9 @@
     <MESSAGE value="attendanceList改変2" />
     <MESSAGE value="attendanceList完成2" />
     <MESSAGE value="diligence 休憩開始以外エラー処理実装" />
-    <option name="LAST_COMMIT_MESSAGE" value="diligence 休憩開始以外エラー処理実装" />
+    <MESSAGE value="ここからadmファイル" />
+    <MESSAGE value="edit反映" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit反映" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/akb_teamD$AkbTeamDApplication.ic" NAME="AkbTeamDApplication のカバレッジ結果" MODIFIED="1701160174989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

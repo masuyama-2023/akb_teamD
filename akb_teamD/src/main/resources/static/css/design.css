@@ -5,8 +5,6 @@
     left: 600px;
 }
 
-
-
 .place {
     font-size: 20px;
 }
@@ -36,3 +34,23 @@
     transform: translateY(4px);/*下に動く*/
 }
 
+input[type="radio"]{
+    display: none;
+}
+
+label{
+   margin: 0px;         /* 外側の下の余白 */
+   display: inline-block;      /* 途中で改行させない */
+   cursor: pointer;            /* マウス形状を手形に */
+}
+/* ▼マウスが載ったときの追加装飾 */
+.tdColor:hover {
+   background-color: blue;  /* 背景色 */
+   color: white;            /* 文字色 */
+   cursor: pointer;            /* マウス形状を手形に */
+}
+
+.tdColor {
+    background-color: beige;
+
+}

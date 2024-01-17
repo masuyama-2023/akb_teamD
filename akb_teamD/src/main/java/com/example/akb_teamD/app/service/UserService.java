@@ -59,8 +59,8 @@ public class UserService {
         getUserRepository().updateAddress(id, name,phone,mail ,remark);
 
     }
-    public void updateUserEdit( int no,String name,int beforeId ,int afterId,String pass){
-        getUserRepository().userEdit(no, name,beforeId,afterId,pass);
+    public void updateUserEdit( int no,String name,int beforeId ,int afterId,String pass, String role){
+        getUserRepository().userEdit(no, name,beforeId,afterId,pass, role);
     }
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
      *                                   DELETE文                              *

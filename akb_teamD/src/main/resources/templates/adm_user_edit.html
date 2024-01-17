@@ -58,6 +58,16 @@
     <input type="hidden" name="beforeId" th:value="${id}"/>
     <input type="hidden" name="beforeName" th:value="${name}"/>
     <input type="hidden" name="beforePass" th:value="${pass}"/>
+
+    <p>
+        <select name="authority">
+            <option value="user" th:selected="${role == 'user'}">ユーザー</option>
+            <option value="admin" th:selected="${role == 'admin'}" >管理者</option>
+        </select>
+    </p>
+
+
+
     <p><input type="submit" value="編集適用"  onclick="return edit_check();"></p>
 </form>
 

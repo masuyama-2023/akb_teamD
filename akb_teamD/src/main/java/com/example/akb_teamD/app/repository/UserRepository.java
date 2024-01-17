@@ -113,10 +113,10 @@ public class UserRepository  implements Create, Delete, View, Update{
     }
 
     @Override
-    public void userEdit(int no, String name,int beforeId ,int afterId,String pass) {
+    public void userEdit(int no, String name,int beforeId ,int afterId,String pass, String role) {
         //users_table編集
-        sql = "UPDATE users_table SET id = ?, name = ? ,password = ?  WHERE no = ?";
-        jdbcTemplate.update(sql,afterId,name,pass,no);
+        sql = "UPDATE users_table SET id = ?, name = ? ,password = ?  , role = ?WHERE no = ?";
+        jdbcTemplate.update(sql,afterId,name,pass,role,no);
         //address_table編集
         sql = "UPDATE address_table SET id = ?, name = ?WHERE id = ?";
         jdbcTemplate.update(sql,afterId,name,beforeId);

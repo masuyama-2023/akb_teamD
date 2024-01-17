@@ -73,14 +73,20 @@ public class AdminMoveController {
         model.addAttribute("name",users.get(0).get("name"));
         model.addAttribute("id",id);
         model.addAttribute("pass",users.get(0).get("password"));
-
+        model.addAttribute("role",users.get(0).get("role"));
 
         return "adm_user_edit";
     }
 
     @PostMapping("user_edit_check")
-    public String editCheck(@RequestParam("afterName") String name,@RequestParam("afterId") int afterId, @RequestParam("afterPass")String pass,@RequestParam
-            ("beforeId")int beforeId, @RequestParam("beforeName") String beforeName, @RequestParam("afterPass")String beforePass,Model model){
+    public String editCheck(@RequestParam("afterName") String name,
+                            @RequestParam("afterId") int afterId,
+                            @RequestParam("afterPass")String pass,
+                            @RequestParam("beforeId")int beforeId,
+                            @RequestParam("beforeName") String beforeName,
+                            @RequestParam("afterPass")String beforePass,
+                            @RequestParam("authority") String role,
+                            Model model){
         //users_tableの主キーの取得
         int no = userService.getUserNo(beforeId);
         //編集後のidの重複確認
@@ -91,12 +97,13 @@ public class AdminMoveController {
             model.addAttribute("name",beforeName);
             model.addAttribute("id",beforeId);
             model.addAttribute("pass",beforePass);
+            model.addAttribute("role",list.get(0).get("role"));
 
             model.addAttribute("errors","IDが重複しています。");
             return "adm_user_edit";
         }
 
-        userService.updateUserEdit(no,name,beforeId,afterId,pass);
+        userService.updateUserEdit(no,name,beforeId,afterId,pass,role);
         model.addAttribute("users",userService.readUserList());
         model.addAttribute("exceed","編集が完了しました。");
         return "adm_userList";

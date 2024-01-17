@@ -11,6 +11,21 @@
     </head>
 
     <body>
+
+    <script>
+                function check(){
+                    if (form_add.name.value == "" || form_add.id.value == "" || form_add.pass.value == ""){
+                        alert("入力に不備があります");    //エラーメッセージを出力
+                        return false;    //送信ボタン本来の動作をキャンセルします
+
+                    }
+                    alert("登録完了");
+                    return true;
+                }
+
+
+            </script>
+
     <trans class="translate">
         <li><a href="user_diligence" >勤怠入力</a></li>
         <li><a href="user_attendanceList" >勤怠状況一覧</a></li>
@@ -23,18 +38,23 @@
 
     </br></br>
 
-        <form action="adm_userList.html" method="post" >
+        <form action="adm_user_add" method="post" name="form_add" >
             <h1 class="center">ユーザー新規登録</h1>
+            <h1 class="center" th:text="${errors}" ></h1>
             <p>名前</p>
-            <p><input type="text" name="name"/></p>
+            <p><input type="text" name="name" th:value="${name}" /></p>
             <p>ログインID</p>
-            <p><input type="text" name="id"/></p>
+            <p><input type="number" name="id"  pattern="^[1-9][0-9]*$"  placeholder="数字のみ" th:value="${id}"/></p>
             <p>Password</p>
-            <p><input type="password" name="password"/></p>
+            <p><input type="password" name="pass" th:value="${pass}"/></p>
 
-            </select>    
-        </p>
-            <p><input type="submit" value="ユーザー追加" id="button"></p>
+            <p>
+           <select name="authority">
+               <option value="user" selected>ユーザー</option>
+               <option value="admin" >管理者</option>
+           </select>
+            </p>
+            <p><input type="submit" value="ユーザー追加" id="button" onclick="return check();"></p>
         </form>
 
     </body>

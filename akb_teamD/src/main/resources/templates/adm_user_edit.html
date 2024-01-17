@@ -10,21 +10,25 @@
 
     <script>
 
-            function alert(){
+            function delete_alert(){
 
                 var checked;
                 checked = window.confirm("削除しますか？");
 
                 return checked;
-
-
             }
 
 
+             function edit_check(){
+               if (form_edit.afterName.value == "" || form_edit.afterId.value == "" || form_edit.afterPass.value == ""){
+                    alert("入力に不備があります");    //エラーメッセージを出力
+                    return false;    //送信ボタン本来の動作をキャンセルします
+               }
+               alert("登録完了");
+               return true;
+            }
 
     </script>
-
-
 
 </head>
 
@@ -41,7 +45,7 @@
 
 </br></br>
 
-<form action="user_edit_check" method="post" >
+<form action="user_edit_check" method="post" name="form_edit" >
     <h1 class="center">ユーザー編集</h1>
     <h1 class="center" th:text="${errors}" ></h1>
     <p>名前</p>
@@ -54,13 +58,15 @@
     <input type="hidden" name="beforeId" th:value="${id}"/>
     <input type="hidden" name="beforeName" th:value="${name}"/>
     <input type="hidden" name="beforePass" th:value="${pass}"/>
-    <p><input type="submit" value="編集適用" id="button"></p>
+    <p><input type="submit" value="編集適用"  onclick="return edit_check();"></p>
 </form>
 
+
 <form action="delete_check" name="delete" method="post" >
-    <input type="hidden" name ="beforeId" th:value="${beforeId}" >
-    <p><input type="submit" th:value="削除" onclick="return alert()"></p>
+    <input type="hidden" name ="beforeId" th:value="${id}" >
+    <p><input type="submit" th:value="削除" onclick="return delete_alert();"></p>
 </form>
+
 
 <form th:action="@{/adm_user_list}" name="new" method="get">
     <p><input type="submit"  value="戻る"></p>

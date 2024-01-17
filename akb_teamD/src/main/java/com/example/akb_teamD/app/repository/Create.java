@@ -9,7 +9,7 @@ public interface Create {
     void address(int id,String name, String phone,String mail,String remark); //連絡先登録です
 
 
-    void adm_add(); //ユーザー登録
+    void adm_add(String name, int id,String pass ,String role); //ユーザー登録
 
 
 }

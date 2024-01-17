@@ -75,3 +75,8 @@ center_right {
 .translate li a:active {
     background-color:cornflowerblue;
 }
+
+select {
+  border:1px solid;
+  font-size: 20px;
+}

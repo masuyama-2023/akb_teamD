@@ -31,8 +31,8 @@ public class UserService {
         getUserRepository().address(id,name,phone,mail,remark);
     }
 
-    public void insertAdmAdd(){
-        getUserRepository().adm_add();
+    public void insertAdmAdd(String name, int id,String pass ,String role){
+        getUserRepository().adm_add(name,id,pass,role);
     }
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *

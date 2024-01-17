@@ -38,6 +38,8 @@ input[type="radio"]{
     display: none;
 }
 
+
+
 label{
    margin: 0px;         /* 外側の下の余白 */
    display: inline-block;      /* 途中で改行させない */
@@ -53,4 +55,8 @@ label{
 .tdColor {
     background-color: beige;
 
+}
+
+.radios {
+  margin: 0.4rem;
 }

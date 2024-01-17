@@ -58,8 +58,9 @@ public class UserRepository  implements Create, Delete, View, Update{
 
 
     @Override
-    public void adm_add() {
-
+    public void adm_add(String name, int id,String pass ,String role) {
+        sql = "INSERT INTO users_table (id,name,password,role) VALUES(?,?,?,?)";
+        jdbcTemplate.update(sql,id, name,pass,role);
     }
 
 

@@ -35,10 +35,34 @@ public class AdminMoveController {
 
 
 
-    @GetMapping("user_add")
-    public String userAdd(Model model) {
+    @GetMapping("adm_user_add")
+    public String moveAdd() {
+
         return "adm_user_add";
     }
+
+    @PostMapping("adm_user_add")
+    public String userAdd(@RequestParam("name") String name, @RequestParam("id") int id,@RequestParam("pass") String pass ,@RequestParam("authority") String role , Model model){
+
+
+        List<Map<String,Object>> list = new ArrayList<>();
+        list = userService.getUserById(id);
+        if( list.size() != 0) {
+            System.out.println("idの重複");
+            model.addAttribute("name", name);
+            model.addAttribute("id", id);
+            model.addAttribute("pass", pass);
+
+            model.addAttribute("errors", "IDが重複しています。");
+            return "adm_user_add";
+        }
+
+        userService.insertAdmAdd(name,id,pass,role);
+
+        model.addAttribute("users",userService.readUserList());
+        return "adm_userList";
+    }
+
 
     @RequestMapping(value="/edit" ,method = RequestMethod.POST)
     public String userEdit(@RequestParam("userId") int id, Model model){

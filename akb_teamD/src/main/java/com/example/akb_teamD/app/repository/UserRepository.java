@@ -116,10 +116,13 @@ public class UserRepository  implements Create, Delete, View, Update{
         //users_table編集
         sql = "UPDATE users_table SET id = ?, name = ? ,password = ?  WHERE no = ?";
         jdbcTemplate.update(sql,afterId,name,pass,no);
-
         //address_table編集
-        sql = "UPDATE users_table SET id = ?, name = ? ,password = ?  WHERE no = ?";
+        sql = "UPDATE address_table SET id = ?, name = ?WHERE id = ?";
+        jdbcTemplate.update(sql,afterId,name,beforeId);
         //attendances_table編集
+        sql = "UPDATE attendances_table SET id = ?, name = ? WHERE id = ?";
+        jdbcTemplate.update(sql,afterId,name,beforeId);
+
 
     }
 

@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>ログイン情報入力</title>
+        <!--css導入リンク-->
+        <link href="css/design.css" rel="stylesheet" type="text/css">
+        <link href="css/global.css" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -14,9 +17,9 @@
             <h1 class="center" th:text="${errors}" ></h1>
             <p>login</p>
             <p>ログインID</p>
-            <input type="text" name="id"/>
+            <p><input type="text" name="id"/></p>
             <p>Password</p>
-            <input type="password" name="password"/>
+            <p><input type="password" name="password"/></p>
             <p><input type="submit" value="Login" id="button" ></p>
         </form>
     </body>

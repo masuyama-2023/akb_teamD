@@ -43,6 +43,7 @@
 
 <form action="user_edit_check" method="post" >
     <h1 class="center">ユーザー編集</h1>
+    <h1 class="center" th:text="${errors}" ></h1>
     <p>名前</p>
     <p><input type="text" name="afterName" th:value="${name}"/></p>
     <p>ログインID</p>

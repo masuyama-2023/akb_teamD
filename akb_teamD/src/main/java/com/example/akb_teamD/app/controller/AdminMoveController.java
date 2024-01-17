@@ -62,17 +62,19 @@ public class AdminMoveController {
         //編集後のidの重複確認
         List<Map<String,Object>> list = new ArrayList<>();
         list = userService.getUserById(afterId);
-        if(list.size() != 0) {
+        if(beforeId != afterId && list.size() != 0) {
                 System.out.println("idの重複");
             model.addAttribute("name",beforeName);
             model.addAttribute("id",beforeId);
             model.addAttribute("pass",beforePass);
 
+            model.addAttribute("errors","IDが重複しています。");
             return "adm_user_edit";
         }
 
         userService.updateUserEdit(no,name,beforeId,afterId,pass);
         model.addAttribute("users",userService.readUserList());
+        model.addAttribute("exceed","編集が完了しました。");
         return "adm_userList";
     }
 

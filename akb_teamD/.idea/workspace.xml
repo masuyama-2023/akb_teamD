@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="新規追加、編集、削除完成(これにて全体完成)">
+    <list default="true" id="abca465d-b507-4e57-9ca9-bef547813343" name="変更" comment="editで権限編集を行えるようにしました">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/AdminMoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/akb_teamD/app/controller/AdminMoveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adm_user_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adm_user_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/AdminMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/AdminMoveController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/controller/GlobalMoveController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/akb_teamD/app/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/adm_user_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/adm_user_edit.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705469228787</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="editで権限編集を行えるようにしました">
+      <created>1705470485876</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1705470485876</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -232,7 +234,8 @@
     <MESSAGE value="edit完成" />
     <MESSAGE value="出退勤の状態表示" />
     <MESSAGE value="新規追加、編集、削除完成(これにて全体完成)" />
-    <option name="LAST_COMMIT_MESSAGE" value="新規追加、編集、削除完成(これにて全体完成)" />
+    <MESSAGE value="editで権限編集を行えるようにしました" />
+    <option name="LAST_COMMIT_MESSAGE" value="editで権限編集を行えるようにしました" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/akb_teamD$AkbTeamDApplication.ic" NAME="AkbTeamDApplication のカバレッジ結果" MODIFIED="1701160174989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

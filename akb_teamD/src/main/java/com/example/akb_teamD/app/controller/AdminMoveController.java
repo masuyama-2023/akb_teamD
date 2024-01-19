@@ -58,7 +58,7 @@ public class AdminMoveController {
         }
 
         userService.insertAdmAdd(name,id,pass,role);
-
+        model.addAttribute("exceed","追加が完了しました。");
         model.addAttribute("users",userService.readUserList());
         return "adm_userList";
     }
